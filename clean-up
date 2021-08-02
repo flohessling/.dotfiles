@@ -1,0 +1,10 @@
+#!/usr/bin/env zsh
+# this script expects $DOTFILES and $STOW_FOLDERS to be set
+
+pushd $DOTFILES
+for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
+do
+    echo "removing $folder ..."
+    stow -D $folder
+done
+popd

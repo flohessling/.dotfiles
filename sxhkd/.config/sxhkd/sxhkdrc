@@ -15,7 +15,7 @@ super + Escape
 
 # program launcher
 super + space 
-        $HOME/.config/rofi/launcher.sh
+        ~/.config/rofi/launcher.sh
 
 
 # bspwm hotkeys

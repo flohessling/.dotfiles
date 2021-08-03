@@ -14,13 +14,13 @@ inputbar {
 entry {
   padding: 16px;
 	text-color: @snow-1;
-	font: "Source Code Pro for Powerline Bold 14";
+	font: "JetBrains Mono Regular 11";
 }
 
 /* The area to the left of the text search box */
 prompt {
 	enabled: true;
-	font: "FontAwesome 13";
+	font: "FontAwesome 12";
 	padding: 18 10 15 15;
 	text-color: @polar-2;
 }
@@ -37,7 +37,7 @@ listview {
 }
 
 element {
-	font: "Source Code Pro for Powerline Normal 20";
+	font: "JetBrains Mono Regular 16";
   border: 0 0 1px 0;
   padding: 12px;
 	spacing: 10px;

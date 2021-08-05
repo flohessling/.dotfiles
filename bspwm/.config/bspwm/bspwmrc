@@ -24,3 +24,6 @@ bspc rule -a Screenkey manage=off
 feh --bg-fill gsettings "$HOME/Pictures/walls/dark-textures.jpg"
 
 setxkbmap de
+
+polybar --config="$HOME/.config/polybar/config.ini"
+

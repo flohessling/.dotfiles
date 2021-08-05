@@ -4,7 +4,7 @@
 
 # terminal
 super + Return
-        alacritty
+       gnome-terminal 
 
 # make sxhkd reload its configuration
 super + Escape

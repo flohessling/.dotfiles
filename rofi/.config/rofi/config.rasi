@@ -2,7 +2,7 @@
 configuration {
 	width: 500;
 	show-icons: true;
-	terminal: "alacritty";
+	terminal: "gnome-terminal";
 	auto-select: false;
 	theme: "nord";
 	drun-display-format: "{icon} {name}";

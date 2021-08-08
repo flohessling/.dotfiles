@@ -18,11 +18,14 @@ set undodir=~/.vim/undodir
 set undofile
 set incsearch
 set scrolloff=8
+set cmdheight=2
+set updatetime=300
 
 highlight LineNr ctermfg=grey
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'morhetz/gruvbox'
 Plug 'tomasiser/vim-code-dark'
 Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-fugitive'
@@ -39,7 +42,7 @@ Plug 'juliosueiras/vim-terraform-completion'
 
 call plug#end()
 
-colorscheme codedark
+colorscheme gruvbox
 
 if executable('rg')
     let g:rg_derive_root='true'
@@ -58,10 +61,6 @@ let g:ctrlp_use_caching = 0
 " coc.nvim default settings
 " -------------------------------------------------------------------------------------------------
 
-" Better display for messages
-set cmdheight=2
-" Smaller updatetime for CursorHold & CursorHoldI
-set updatetime=300
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
 " always show signcolumns

@@ -1,0 +1,3 @@
+i3-wm.gaps.inner.size: 10
+i3-wm.gaps.outer.size: 10
+i3-wm.program.lock: lock.sh

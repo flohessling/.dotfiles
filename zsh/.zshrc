@@ -107,6 +107,7 @@ alias bcat="batcat"
 alias merge-upstream="git checkout staging && git pull origin staging && git branch -D merge-upstream; git checkout production && git pull origin production && git checkout -b merge-upstream && git merge --no-ff origin/staging -m \"Merge staging->production\" -n && git push -o merge_request.create -o merge_request.target=production origin merge-upstream -f"
 alias gpo='git pull origin "$(git_current_branch)"'
 alias codium='/usr/share/codium/codium'
+alias ykrestart='gpgconf --reload scdaemon && gpgconf --kill gpg-agent && gpg-connect-agent updatestartuptty /bye'
 alias vim='nvim'
 
 # BEGIN SNIPPET: Platform.sh CLI configuration

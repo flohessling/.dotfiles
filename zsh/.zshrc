@@ -109,6 +109,7 @@ alias gpo='git pull origin "$(git_current_branch)"'
 alias codium='/usr/share/codium/codium'
 alias ykrestart='gpgconf --reload scdaemon && gpgconf --kill gpg-agent && gpg-connect-agent updatestartuptty /bye'
 alias vim='nvim'
+alias vi='nvim'
 
 # BEGIN SNIPPET: Platform.sh CLI configuration
 HOME=${HOME:-'/home/f'}

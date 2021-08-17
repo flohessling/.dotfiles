@@ -39,7 +39,7 @@ set termguicolors
 set scrolloff=8
 " set noshowmode
 set signcolumn=yes
-set colorcolumn=80
+set colorcolumn=120
 
 " Give more space for displaying messages.
 set cmdheight=1

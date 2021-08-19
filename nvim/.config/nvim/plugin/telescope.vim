@@ -15,6 +15,8 @@ nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
 nnoremap <leader>fo <cmd>lua require('telescope.builtin').oldfiles()<cr>
 nnoremap <leader>fs <cmd>lua require('telescope.builtin').lsp_document_symbols()<cr>
 
+nnoremap <leader>im <cmd>lua require('telescope').extensions.goimpl.goimpl()<CR>
+
 inoremap <C-CR> <cmd>lua require('telescope.builtin').lsp_code_actions()<cr>
 
 nnoremap <C-q> :call ToggleQFList(1)<CR>

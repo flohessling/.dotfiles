@@ -133,7 +133,7 @@ nnoremap ]q :cnext<CR>
 "
 
 let g:completion_enable_snippet = 'vsnip'
-let g:airline_theme = 'base16_gruvbox_dark_hard'
+let g:airline_theme = 'minimalist'
 
 autocmd BufReadPost *                                                       
         \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'     

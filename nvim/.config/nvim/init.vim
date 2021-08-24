@@ -57,7 +57,8 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'edolphin-ydf/goimpl.nvim'
-Plug 'gruvbox-community/gruvbox'
+" Plug 'gruvbox-community/gruvbox'
+Plug 'tomasiser/vim-code-dark'
 " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'mbbill/undotree'
 Plug 'tpope/vim-fugitive'
@@ -76,7 +77,7 @@ call plug#end()
 
 lua require'nvim-treesitter.configs'.setup { highlight = { enable = true }, incremental_selection = { enable = true }, textobjects = { enable = true }}
 
-colorscheme gruvbox
+colorscheme codedark
 highlight Normal guibg=none
 
 let mapleader = " "

@@ -111,6 +111,10 @@ alias ykrestart='gpgconf --reload scdaemon && gpgconf --kill gpg-agent && gpg-co
 alias vim='nvim'
 alias vi='nvim'
 
+ccd () {
+    cd $(~/bin/dir_select);
+}
+
 export XDG_CONFIG_HOME=$HOME/.config
 
 # BEGIN SNIPPET: Platform.sh CLI configuration

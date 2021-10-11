@@ -110,6 +110,9 @@ alias codium='/usr/share/codium/codium'
 alias ykrestart='gpgconf --reload scdaemon && gpgconf --kill gpg-agent && gpg-connect-agent updatestartuptty /bye'
 alias vim='nvim'
 alias vi='nvim'
+alias todo='vim ~/code/notes/todo.md'
+alias qwertz='setxkbmap us'
+alias qwerty='setxkbmap de'
 
 ccd () {
     cd $(~/bin/dir_select);

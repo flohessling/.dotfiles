@@ -7,7 +7,7 @@ fi
 
 # oh-my-zsh config
 plugins=(git docker docker-compose aws fzf)
-ZSH_CUSTOM="$HOME/.config/zsh/ohmyzsh/custom"
+ZSH_CUSTOM="$HOME/.config/zsh/omz_custom"
 ZSH_THEME="oxide"
 source $ZSH/oh-my-zsh.sh
 

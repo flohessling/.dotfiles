@@ -20,9 +20,9 @@ Using the `--bare` option when cloning this repository makes it possible to have
 ```
 git clone --bare git@github.com:flohessling/.dotfiles.git $HOME/.dotfiles
 
-alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-dotfiles checkout
-dotfiles config --local status.showUntrackedFiles no
+alias dot='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+dot checkout
+dot config --local status.showUntrackedFiles no
 ```
 
 The config option hides all untracked files in `$HOME` and makes `git status` actually usable.
@@ -44,10 +44,10 @@ The secrets are en- / decrypted using the unlock key (which is required for this
 
 ```
 # 1password
-op document get dotfiles.key --force | dotfiles crypt unlock -
+op document get dotfiles --force | dot crypt unlock -
 
 # key file
-dotfiles crypt unlock dotfiles.key
+dot crypt unlock dotfiles.key
 ```
 
 ### Restart shell (zsh)

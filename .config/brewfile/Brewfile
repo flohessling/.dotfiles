@@ -1,0 +1,14 @@
+# taps
+
+
+# casks
+cask "1password-cli"
+cask "session-manager-plugin"
+cask "obsidian"
+cask "stats"
+cask "font-hack-nerd-font"
+cask "font-jetbrains-mono"
+cask "font-jetbrains-mono-nerd-font"
+
+# brews
+brew "awscli"

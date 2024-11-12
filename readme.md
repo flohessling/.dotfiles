@@ -13,7 +13,7 @@ To start with this configuration we need to clone this repository first using `g
 Using the `--bare` option when cloning this repository makes it possible to have all files from this repository tracked in `$HOME` and not needing to symlink anything.
 
 ```
-git clone --bare https://github.com/flohessling/.dotfiles.git $HOME/.dotfiles
+git clone --bare git@github.com:flohessling/.dotfiles.git $HOME/.dotfiles
 
 alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 dotfiles checkout

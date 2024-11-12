@@ -39,10 +39,10 @@ The secrets are en- / decrypted using the unlock key (which is required for this
 
 ```
 # 1password
-op document get .gitcrypt --force | dotfiles crypt unlock -
+op document get dotfiles.key --force | dotfiles crypt unlock -
 
 # key file
-dotfiles crypt unlock gitcrypt.key
+dotfiles crypt unlock dotfiles.key
 ```
 
 ### Restart shell (zsh)

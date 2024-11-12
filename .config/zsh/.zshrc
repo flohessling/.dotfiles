@@ -6,6 +6,7 @@ else
 fi
 
 # oh-my-zsh config
+export ZSH="$ZDOTDIR/ohmyzsh"
 plugins=(git docker docker-compose aws fzf)
 ZSH_CUSTOM="$HOME/.config/zsh/omz_custom"
 ZSH_THEME="oxide"

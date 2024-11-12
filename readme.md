@@ -8,6 +8,11 @@ It is making use of `git` and `homebrew`. Not much else should be needed.
 
 To start with this configuration we need to clone this repository first using `git clone --bare`.
 
+### Install oh-my-zsh
+```
+/bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
 ### Cloning the repository
 
 Using the `--bare` option when cloning this repository makes it possible to have all files from this repository tracked in `$HOME` and not needing to symlink anything.

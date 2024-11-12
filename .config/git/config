@@ -1,0 +1,36 @@
+[alias]
+	amend = "commit --amend --reuse-message=HEAD"
+	pf = "push --force-with-lease"
+	rs = "restore --staged"
+
+[commit]
+	gpgSign = true
+
+[fetch]
+	prune = true
+
+[gpg]
+	format = "ssh"
+	program = "/opt/homebrew/bin/gpg"
+
+[gpg "ssh"]
+	allowedSignersFile = "~/.ssh/allowed_signers"
+	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+[init]
+	defaultBranch = "main"
+
+[pull]
+    rebase = true
+
+[push]
+    autoSetupRemote = true
+	default = "simple"
+
+[tag]
+	gpgSign = true
+
+[user]
+	email = "f.hessling@shopware.com"
+	name = "Flo Hessling"
+	signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDn2PfoRVF81hGahkDlH0D6LyLzf4S8CbDHQku0aK+Eu"

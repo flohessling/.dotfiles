@@ -88,7 +88,6 @@ export GOPRIVATE="gitlab.shopware.com"
 
 # dotfiles alias
 alias dot="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
-alias dotfiles="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
 # aliases
 alias -- bcat='bat --theme "base16"'

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 declare awsprofiles
-awsp() {
+awsume() {
     if [ -z "$awsprofiles" ]; then
         awsprofiles=$(aws configure list-profiles)
     fi

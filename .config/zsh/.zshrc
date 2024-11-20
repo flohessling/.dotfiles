@@ -90,6 +90,7 @@ export GOPRIVATE="gitlab.shopware.com"
 alias dot="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
 # aliases
+alias -- awsp='awsume'
 alias -- bcat='bat --theme "base16"'
 alias -- cat='bat -pp --theme "base16"'
 alias -- cdhm='cd ~/.config/home-manager'

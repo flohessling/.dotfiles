@@ -8,20 +8,15 @@ file="$HOME"'/notes/01-daily/'"$today".md
 cd "$HOME"/notes || exit
 
 new_note() {
-  touch "$file"
+    touch "$file"
 
-  # format with daily template
-  cat <<EOF >"$file"
+    # format with daily template
+    cat <<EOF >"$file"
 # $today
 
 [[$yesterday]] - [[$tomorrow]]
 
-## daily habits
-
-- [ ] excercise for at least 10 minutes
-- [ ] write at least one line of code
-
-## eod
+## EOD
 
 *What did I achieve today?*
 - 
@@ -29,15 +24,15 @@ new_note() {
 *What do I want to achieve tomorrow?*
 -
 
-## log
+## LOG
 EOF
 
 }
 
 # if the daily note does not exist create a new one
 if [ ! -f "$file" ]; then
-  echo "creating a new daily note..."
-  new_note
+    echo "creating a new daily note..."
+    new_note
 fi
 
 # open the daily note in nvim

@@ -126,3 +126,28 @@ ecr() {
         docker login --password-stdin --username AWS \
             "$(aws sts get-caller-identity --query Account --output text).dkr.ecr.$region.amazonaws.com"
 }
+
+rdstunnel() {
+    local region="eu-central-1"
+    local bastion_id db_selection db_host db_port
+
+    # query ec2 instance id for bastion
+    bastion_id=$(aws ec2 describe-instances --region $region --filters "Name=tag:Name,Values=Bastion" --query "Reservations[*].Instances[*].InstanceId" --output text)
+    if [ -z "$bastion_id" ]; then
+        echo "no bastion ec2 instance found..."
+        return 1
+    fi
+
+    # query db instances and select using fzf
+    db_selection=$(aws rds describe-db-instances --region $region --query "DBInstances[*].[DBInstanceIdentifier, Endpoint.Address, Endpoint.Port]" --output text | column -t | fzf --ansi -1 -q "$*")
+    if [ -z "$db_selection" ]; then
+        echo "no database instance found..."
+        return 1
+    fi
+
+    # extract db host and port
+    read -r db_host db_port <<<"$(echo "$db_selection" | awk '{print $2, $3}')"
+
+    aws ssm start-session --region $region --target "$bastion_id" --document-name AWS-StartPortForwardingSessionToRemoteHost \
+        --parameters "{\"host\":[\"$db_host\"],\"portNumber\":[\"$db_port\"],\"localPortNumber\":[\"$db_port\"]}"
+}

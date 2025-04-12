@@ -8,22 +8,15 @@ return {
     },
 
     config = function()
-        local trouble = require("trouble.sources.telescope")
-
         require("telescope").setup({
             defaults = {
                 mappings = {
                     i = {
                         ["<C-u>"] = false,
                         ["<C-d>"] = false,
-                        ["<c-t>"] = trouble.open,
                         ["<C-q>"] = function(prompt_bufnr)
                             require("telescope.actions").smart_send_to_qflist(prompt_bufnr)
-                            require("trouble").open("quickfix")
                         end,
-                    },
-                    n = {
-                        ["<c-t>"] = trouble.open,
                     },
                 },
                 winblend = 0,

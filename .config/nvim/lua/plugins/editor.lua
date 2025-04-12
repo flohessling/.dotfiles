@@ -9,26 +9,6 @@ return {
         end,
     },
     {
-        "folke/trouble.nvim",
-        dependencies = { "nvim-tree/nvim-web-devicons" },
-        event = "VeryLazy",
-        opts = {},
-        keys = {
-            -- stylua: ignore start
-            { "<leader>x",  function() require("trouble").toggle(); end,                                    desc = "Toggle trouble", },
-            { "<C-x>",      function() require("trouble").toggle(); end,                                    desc = "Toggle trouble", },
-            { "<leader>xw", function() require("trouble").toggle("workspace_diagnostics"); end,             desc = "Toggle trouble with workspace diagnostics", },
-            { "<leader>xd", function() require("trouble").toggle("document_diagnostics"); end,              desc = "Toggle trouble with document diagnostics", },
-            { "<leader>xq", function() require("trouble").toggle("quickfix"); end,                          desc = "Toggle trouble with quickfix list", },
-            { "<leader>xl", function() require("trouble").toggle("loclist"); end,                           desc = "Toggle trouble with LSP references", },
-            { "gR",         function() require("trouble").toggle("lsp_references"); end,                    desc = "Toggle trouble with loclist", },
-            { "]x",         function() require("trouble").next({ skip_groups = true, jump = true }); end,   desc = "Jump to next trouble item", },
-            { "[x",         function() require("trouble").previous({ skip_groups = true, jump = true }); end, desc = "Jump to previous trouble item", },
-            { "<C-q>",      function() require("trouble").toggle("quickfix"); end,                          desc = "Jump to previous trouble item", },
-            -- stylua: ignore end
-        },
-    },
-    {
         "ThePrimeagen/harpoon",
         dependencies = { "nvim-lua/plenary.nvim" },
         event = "VeryLazy",

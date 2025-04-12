@@ -1,46 +1,13 @@
 return {
-    "hrsh7th/nvim-cmp",
+    "iguanacucumber/magazine.nvim",
+    name = "nvim-cmp",
     event = "InsertEnter",
     dependencies = {
-        "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-path",
-        "hrsh7th/cmp-vsnip",
-        "hrsh7th/vim-vsnip",
-        "onsails/lspkind.nvim",
-        {
-            "windwp/nvim-autopairs",
-            event = "InsertEnter",
-            opts = {},
-        },
-        {
-            "windwp/nvim-ts-autotag",
-            event = "InsertEnter",
-            opts = {
-                autotag = {
-                    filetypes = {
-                        "html",
-                        "javascript",
-                        "typescript",
-                        "javascriptreact",
-                        "typescriptreact",
-                        "svelte",
-                        "vue",
-                        "tsx",
-                        "jsx",
-                        "rescript",
-                        "xml",
-                        "php",
-                        "markdown",
-                        "astro",
-                        "glimmer",
-                        "handlebars",
-                        "hbs",
-                        "templ",
-                        "gotmpl",
-                    },
-                },
-            },
-        },
+        { "iguanacucumber/mag-nvim-lsp", name = "cmp-nvim-lsp", opts = {} },
+        { "iguanacucumber/mag-nvim-lua", name = "cmp-nvim-lua" },
+        { "iguanacucumber/mag-buffer", name = "cmp-buffer" },
+        { "iguanacucumber/mag-cmdline", name = "cmp-cmdline" },
+        "https://codeberg.org/FelipeLema/cmp-async-path",
     },
     config = function()
         -- nvim-cmp setup
@@ -51,13 +18,12 @@ return {
             return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
         end
 
-        local source_hl = {
-            nvim_lua = "@constant.builtin",
-            buffer = "@string",
-            path = "Directory",
-        }
+        local hasCopilot, copilot = pcall(require, "copilot.suggestion")
 
         cmp.setup({
+            performance = {
+                debounce = 0,
+            },
             completion = {
                 keyword_length = 1,
             },
@@ -65,27 +31,12 @@ return {
                 ghost_text = false,
                 native_menu = false,
             },
-            snippet = {
-                expand = function(args)
-                    vim.fn["vsnip#anonymous"](args.body)
-                end,
-            },
             formatting = {
                 fields = { "kind", "abbr", "menu" },
-                function(entry, item)
-                    local kind = item.kind
-                    local kind_hl_group = ("CmpItemKind%s"):format(kind)
-
-                    item.kind_hl_group = ("%sIcon"):format(kind_hl_group)
-                    item.menu_hl_group = source_hl[entry.source.name] or kind_hl_group
-                    item.menu = kind
-
-                    local half_win_width = math.floor(vim.api.nvim_win_get_width(0) / 2)
-                    if vim.api.nvim_strwidth(item.abbr) > half_win_width then
-                        item.abbr = ("%s…"):format(item.abbr:sub(1, half_win_width))
-                    end
-                    item.abbr = ("%s "):format(item.abbr)
-
+                format = function(_, item)
+                    local icon, hl = require("mini.icons").get("lsp", item.kind)
+                    item.kind = icon .. " " .. item.kind
+                    item.kind_hl_group = hl
                     return item
                 end,
             },
@@ -117,10 +68,8 @@ return {
                 end),
 
                 ["<Tab>"] = cmp.mapping(function(fallback)
-                    local copilot_keys = vim.fn["copilot#Accept"]()
-
-                    if copilot_keys ~= "" and type(copilot_keys) == "string" then
-                        vim.api.nvim_feedkeys(copilot_keys, "i", true)
+                    if hasCopilot and copilot.is_visible() then
+                        copilot.accept()
                     elseif cmp.visible() then
                         cmp.select_next_item()
                     elseif has_words_before() then
@@ -145,16 +94,18 @@ return {
                         return require("cmp.types").lsp.CompletionItemKind[entry:get_kind()] ~= "Text"
                     end,
                 },
-                { name = "path" },
-                { name = "buffer" },
-                { name = "copilot" },
+                { name = "async_path" },
             },
         })
 
-        local presentAutopairs, cmp_autopairs = pcall(require, "nvim-autopairs.completion.cmp")
-        if not presentAutopairs then
-            return
-        end
-        cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+        cmp.setup.cmdline(":", {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = cmp.config.sources({
+                { name = "path" },
+            }, {
+                { name = "cmdline" },
+            }),
+            matching = { disallow_symbol_nonprefix_matching = false },
+        })
     end,
 }

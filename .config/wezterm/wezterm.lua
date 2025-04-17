@@ -31,6 +31,7 @@ config.keys = {
 	{ key = "D", mods = "CMD", action = wezterm.action.SplitVertical },
 	{ key = "LeftArrow", mods = "CMD", action = wezterm.action({ ActivatePaneDirection = "Prev" }) },
 	{ key = "RightArrow", mods = "CMD", action = wezterm.action({ ActivatePaneDirection = "Next" }) },
+	{ key = "l", mods = "CMD", action = wezterm.action({ ActivatePaneDirection = "Next" }) },
 }
 
 -- color scheme

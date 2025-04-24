@@ -1,15 +1,15 @@
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
+local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+vim.api.nvim_create_autocmd("TextYankPost", {
     callback = function()
         vim.highlight.on_yank()
     end,
     group = highlight_group,
-    pattern = '*',
+    pattern = "*",
 })
 
-vim.cmd [[
+vim.cmd([[
   function! QuickFixToggle()
     if empty(filter(getwininfo(), 'v:val.quickfix'))
       copen
@@ -17,12 +17,12 @@ vim.cmd [[
       cclose
     endif
   endfunction
-]]
+]])
 
 -- Don't auto commenting new lines
-vim.api.nvim_create_autocmd('BufEnter', {
-    pattern = '*',
-    command = 'set fo-=c fo-=r fo-=o'
+vim.api.nvim_create_autocmd("BufEnter", {
+    pattern = "*",
+    command = "set fo-=c fo-=r fo-=o",
 })
 
 -- check if reloading is necessary after file changes
@@ -50,7 +50,15 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     end,
 })
 
-
+-- workaround for hover borders
+local hover = vim.lsp.buf.hover
+vim.lsp.buf.hover = function()
+    return hover({
+        border = "rounded",
+        max_width = math.floor(vim.o.columns * 0.7),
+        max_height = math.floor(vim.o.lines * 0.7),
+    })
+end
 
 -- --- Set root dir
 -- local root_names = { '.git', 'Makefile' } -- Array of file names indicating root directory. Modify to your liking.

@@ -3,7 +3,17 @@ return {
     name = "nvim-cmp",
     event = "InsertEnter",
     dependencies = {
-        { "iguanacucumber/mag-nvim-lsp", name = "cmp-nvim-lsp", opts = {} },
+        {
+            "iguanacucumber/mag-nvim-lsp",
+            name = "cmp-nvim-lsp",
+            opts = {},
+            config = function(_, opts)
+                require("cmp_nvim_lsp").setup(opts)
+                vim.lsp.config("*", {
+                    capabilities = require("cmp_nvim_lsp").default_capabilities(),
+                })
+            end,
+        },
         { "iguanacucumber/mag-nvim-lua", name = "cmp-nvim-lua" },
         { "iguanacucumber/mag-buffer", name = "cmp-buffer" },
         { "iguanacucumber/mag-cmdline", name = "cmp-cmdline" },
@@ -66,26 +76,6 @@ return {
                     end
                     fallback() -- if not exited early, always fallback
                 end),
-
-                ["<Tab>"] = cmp.mapping(function(fallback)
-                    if hasCopilot and copilot.is_visible() then
-                        copilot.accept()
-                    elseif cmp.visible() then
-                        cmp.select_next_item()
-                    elseif has_words_before() then
-                        cmp.complete()
-                    else
-                        fallback()
-                    end
-                end, { "i", "s" }),
-
-                ["<S-Tab>"] = cmp.mapping(function(fallback)
-                    if cmp.visible() then
-                        cmp.select_prev_item()
-                    else
-                        fallback()
-                    end
-                end, { "i", "s" }),
             }),
             sources = {
                 {

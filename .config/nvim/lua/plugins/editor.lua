@@ -5,7 +5,12 @@ return {
         event = "InsertEnter",
         opts = {
             panel = { enabled = false },
-            suggestion = { auto_trigger = true },
+            suggestion = {
+                auto_trigger = true,
+                keymap = {
+                    accept = "<C-y>",
+                },
+            },
             filetypes = {},
         },
     },
@@ -54,7 +59,7 @@ return {
     {
         "mcauley-penney/visual-whitespace.nvim",
         config = true,
-        event = "BufReadPost",
+        keys = { "v", "V", "<C-v>" },
     },
     {
         "folke/todo-comments.nvim",

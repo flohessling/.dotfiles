@@ -41,4 +41,35 @@ vim.opt.listchars = { tab = "  " }
 vim.opt.splitkeep = "cursor" -- keep cursor position when opening a new split
 vim.o.shortmess = "filnxtToOFWIcC"
 
-vim.diagnostic.config({ float = { border = "rounded" } }) -- Use rounded borders for diagnostics
+local icons = {
+    Error = " ",
+    Warn = " ",
+    Hint = " ",
+    Info = " ",
+}
+
+vim.diagnostic.config({
+    float = { border = "rounded" },
+    underline = true,
+    update_in_insert = false,
+    virtual_text = {
+        spacing = 4,
+        source = "if_many",
+        prefix = function(diagnostic)
+            for d, icon in pairs(icons) do
+                if diagnostic.severity == vim.diagnostic.severity[d:upper()] then
+                    return icon
+                end
+            end
+        end,
+    },
+    severity_sort = true,
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = icons.Error,
+            [vim.diagnostic.severity.WARN] = icons.Warn,
+            [vim.diagnostic.severity.INFO] = icons.Info,
+            [vim.diagnostic.severity.HINT] = icons.Hint,
+        },
+    },
+})

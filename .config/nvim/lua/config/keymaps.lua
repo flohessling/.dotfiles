@@ -56,8 +56,8 @@ M.lsp_attach = function(_, bufnr)
         vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
     end
 
-    nmap("<leader>lr", vim.lsp.buf.rename, "[LSP] Rename")
-    nmap("<leader>la", vim.lsp.buf.code_action, "[LSP] Code Action")
+    nmap("<leader>lr", vim.lsp.buf.rename, "Rename")
+    nmap("<leader>la", vim.lsp.buf.code_action, "Code Action")
 
     nmap("gd", "<cmd>lua require('fzf-lua').lsp_definitions({jump_to_single_result = true})<CR>", "[G]oto [D]efinition")
     nmap(

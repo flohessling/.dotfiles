@@ -17,13 +17,26 @@ return {
         "stevearc/conform.nvim",
         opts = function(_, opts)
             opts.formatters_by_ft = vim.tbl_deep_extend("force", opts.formatters_by_ft, {
-                go = { "golines" },
+                go = { "gci", "golines" },
+                sql = { "sqlfmt" },
+            })
+
+            opts.formatters = vim.tbl_deep_extend("force", opts.formatters, {
+                gci = {
+                    args = { "-s", "-w" },
+                    golines = {
+                        prepend_args = {
+                            "--base-formatter=gofumpt",
+                            "--ignore-generated",
+                        },
+                    },
+                },
             })
             -- let gopls run goimports
             vim.api.nvim_create_autocmd("BufWritePre", {
                 pattern = "*.go",
                 callback = function()
-                    local params = vim.lsp.util.make_range_params()
+                    local params = vim.lsp.util.make_range_params(0, "utf-8")
                     params.context = { only = { "source.organizeImports" } }
                     local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 3000)
                     for cid, res in pairs(result or {}) do

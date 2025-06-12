@@ -1,6 +1,5 @@
 # taps
 tap "homebrew/bundle"
-tap "homebrew/cask-fonts"
 tap "hashicorp/tap"
 tap "nats-io/homebrew-nats-tools"
 tap "shivammathur/php"

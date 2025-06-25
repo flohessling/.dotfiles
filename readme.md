@@ -25,7 +25,7 @@ dot checkout
 dot config --local status.showUntrackedFiles no
 ```
 
-The config option hides all untracked files in `$HOME` and makes `git status` actually usable.
+The config option hides all untracked files in `$HOME` and makes `dot status` actually usable.
 
 ### Install homebrew and packages
 

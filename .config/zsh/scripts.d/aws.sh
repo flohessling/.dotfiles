@@ -148,6 +148,17 @@ rdstunnel() {
     # extract db host and port
     read -r db_host db_port <<<"$(echo "$db_selection" | awk '{print $2, $3}')"
 
+    # Generate IAM database authentication token
+    echo "Generating IAM database authentication token..."
+    db_token=$(aws rds generate-db-auth-token --region $region --hostname $db_host --port $db_port --username engineer)
+
+    if [ $? -eq 0 ] && [ -n "$db_token" ]; then
+        echo "✓ IAM token generated successfully, expires after 15 minutes!"
+        echo "Connect using: mysql -h 127.0.0.1 -P $db_port -u engineer --enable-cleartext-plugin --password='$db_token'"
+    else
+        echo "⚠ Failed to generate IAM token - you may need to use traditional authentication"
+    fi
+
     aws ssm start-session --region $region --target "$bastion_id" --document-name AWS-StartPortForwardingSessionToRemoteHost \
         --parameters "{\"host\":[\"$db_host\"],\"portNumber\":[\"$db_port\"],\"localPortNumber\":[\"$db_port\"]}"
 }

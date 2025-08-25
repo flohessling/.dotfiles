@@ -62,13 +62,6 @@ export XDG_CONFIG_HOME=$HOME/.config
 export XDG_DATA_HOME=$HOME/.local/share
 export XDG_STATE_HOME=$HOME/.local/state
 
-# configure paths
-export PATH="$PATH:$HOME/bin"
-export PATH="$PATH:/usr/local/bin"
-export PATH="$PATH:$GOPATH/bin"
-export PATH="$PATH:$HOME/.local/bin"
-export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
-
 # configure env
 export EDITOR="nvim"
 export DOCKER_BUILDKIT=1
@@ -85,6 +78,13 @@ export HOMEBREW_BUNDLE_FILE="$XDG_CONFIG_HOME/brewfile/Brewfile"
 
 export GOPATH="$HOME/code/go"
 export GOPRIVATE="gitlab.shopware.com"
+
+# configure paths
+export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:/usr/local/bin"
+export PATH="$PATH:$GOPATH/bin"
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
 
 # dotfiles alias
 alias dot="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"

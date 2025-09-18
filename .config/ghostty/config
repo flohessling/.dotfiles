@@ -1,0 +1,61 @@
+# Font
+font-family = JetBrainsMono Nerd Font
+font-size = 12
+
+# Window settings
+background-opacity = 0.97
+macos-non-native-fullscreen = false
+macos-titlebar-style = hidden
+window-height = 65
+window-width = 225
+window-padding-x = 8
+window-padding-y = 8
+
+# Focus follows mouse
+focus-follows-mouse = true
+
+# macOS Option key as Alt
+macos-option-as-alt = true
+
+# Cursor
+cursor-style = block
+
+# Tab settings
+gtk-tabs-location = hidden
+
+# Colors (custom theme matching your WezTerm)
+foreground = c7c7c7
+background = 0d0e10
+
+selection-foreground = d9dde7
+selection-background = 4d5568
+
+split-divider-color = 333333
+
+palette = 0=#1f1f1f
+palette = 1=#9f4845
+palette = 2=#8fada2
+palette = 3=#ebc17f
+palette = 4=#85bef9
+palette = 5=#a2779c
+palette = 6=#6d9c9f
+palette = 7=#d0d0d0
+palette = 8=#555555
+palette = 9=#bf625f
+palette = 10=#94a862
+palette = 11=#f9dfb2
+palette = 12=#afd4fb
+palette = 13=#c279b8
+palette = 14=#83b3aa
+palette = 15=#e1e1e1
+
+# Keybindings
+keybind = cmd+d=new_split:right
+keybind = cmd+shift+d=new_split:down
+keybind = cmd+left=goto_split:previous
+keybind = cmd+right=goto_split:next
+keybind = cmd+l=goto_split:next
+keybind = cmd+shift+left=resize_split:left,10
+keybind = cmd+shift+right=resize_split:right,10
+keybind = cmd+shift+up=resize_split:up,10
+keybind = cmd+shift+down=resize_split:down,10

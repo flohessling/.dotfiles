@@ -1,6 +1,7 @@
 # Font
 font-family = JetBrainsMono Nerd Font
 font-size = 12
+adjust-cell-width = "-10%"
 
 # Window settings
 background-opacity = 0.97

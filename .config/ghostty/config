@@ -4,7 +4,8 @@ font-size = 12
 adjust-cell-width = "-10%"
 
 # Window settings
-background-opacity = 0.97
+background-opacity = 0.96
+background-blur = true
 macos-non-native-fullscreen = false
 macos-titlebar-style = hidden
 window-height = 65

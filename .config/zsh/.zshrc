@@ -99,6 +99,7 @@ alias -- gpo='git pull origin $(git_current_branch)'
 alias -- hm=home-manager
 alias -- lg=lazygit
 alias -- tf=terraform
+alias -- tg=terragrunt
 alias -- notes='cd ~/notes && v home.md'
 alias -- sso='aws sso login --sso-session root'
 alias -- t='tmux new -As0'

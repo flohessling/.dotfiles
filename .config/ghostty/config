@@ -21,6 +21,7 @@ macos-option-as-alt = true
 
 # Cursor
 cursor-style = block
+cursor-color = 81c784
 
 # Tab settings
 gtk-tabs-location = hidden

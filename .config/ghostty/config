@@ -19,6 +19,9 @@ focus-follows-mouse = true
 # macOS Option key as Alt
 macos-option-as-alt = true
 
+# shell integration settings
+shell-integration-features = ssh-env
+
 # Cursor
 cursor-style = block
 cursor-color = 81c784

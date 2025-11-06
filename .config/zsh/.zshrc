@@ -85,6 +85,7 @@ export PATH="$PATH:/usr/local/bin"
 export PATH="$PATH:$GOPATH/bin"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
+export PATH="$PATH:/opt/homebrew/opt/mysql-client/bin"
 
 # dotfiles alias
 alias dot="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"

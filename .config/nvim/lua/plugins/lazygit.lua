@@ -12,5 +12,6 @@ return {
     },
     keys = {
         { "<leader>gg", ":LazyGit<CR>", { desc = "Lazygit" } },
+        { "<leader>gf", ":LazyGitFilterCurrentFile<CR>", { desc = "Lazygit Filter Current File" } },
     },
 }

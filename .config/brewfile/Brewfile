@@ -21,7 +21,7 @@ cask "font-jetbrains-mono"
 cask "font-jetbrains-mono-nerd-font"
 cask "ghostty"
 cask "gitify"
-cask "yubico-yubikey-manager"
+cask "zen"
 
 # brews
 brew "awscli"

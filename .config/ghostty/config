@@ -9,7 +9,7 @@ background-blur = true
 macos-non-native-fullscreen = false
 macos-titlebar-style = hidden
 window-height = 65
-window-width = 225
+window-width = 240
 window-padding-x = 8
 window-padding-y = 8
 

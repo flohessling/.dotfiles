@@ -94,10 +94,6 @@ alias dot="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 alias -- awsp='awsume'
 alias -- bcat='bat --theme "base16"'
 alias -- cat='bat -pp --theme "base16"'
-alias -- cdhm='cd ~/.config/home-manager'
-alias -- ehm='v ~/.config/home-manager/home.nix'
-alias -- gpo='git pull origin $(git_current_branch)'
-alias -- hm=home-manager
 alias -- lg=lazygit
 alias -- tf=terraform
 alias -- tg=terragrunt

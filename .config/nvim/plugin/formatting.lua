@@ -39,6 +39,10 @@ require("conform").setup({
         if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
             return
         end
+        -- Skip auto-format for markdown; use <leader>F to format on demand
+        if vim.bo[bufnr].filetype == "markdown" then
+            return
+        end
         return { timeout_ms = 3000, lsp_format = "fallback" }
     end,
 })

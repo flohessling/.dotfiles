@@ -4,12 +4,20 @@ return {
     cmd = { "shopware-lsp" },
     root_markers = { "composer.json", ".git" },
     filetypes = { "php", "xml", "twig", "yaml" },
-    root_dir = function(pattern)
-        local util = require("lspconfig.util")
+    root_dir = function(bufnr, on_dir)
         local cwd = vim.uv.cwd()
-        local root = util.root_pattern("composer.json", ".git")(pattern)
+        local buf_path = vim.api.nvim_buf_get_name(bufnr)
+        local marker = vim.fs.find({ "composer.json", ".git" }, {
+            path = vim.fs.dirname(buf_path),
+            upward = true,
+        })[1]
+        local root = marker and vim.fs.dirname(marker) or cwd
 
         -- prefer cwd if root is a descendant
-        return util.path.is_descendant(cwd, root) and cwd or root
+        if root:find(cwd, 1, true) == 1 then
+            on_dir(cwd)
+        else
+            on_dir(root)
+        end
     end,
 }

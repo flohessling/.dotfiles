@@ -2,7 +2,6 @@ vim.lsp.enable("shopware_lsp")
 
 return {
     cmd = { "shopware-lsp" },
-    root_markers = { "composer.json", ".git" },
     filetypes = { "php", "xml", "twig", "yaml" },
     root_dir = function(bufnr, on_dir)
         local cwd = vim.uv.cwd()

@@ -4,7 +4,7 @@ return {
     root_markers = { ".luarc.json", ".luarc.jsonc", ".stylua.toml", ".git" },
     settings = {
         Lua = {
-            workspace = { checkThridParty = false },
+            workspace = { checkThirdParty = false },
             telemetry = { enable = false },
             diagnostics = {
                 globals = { "vim", "Snacks" },

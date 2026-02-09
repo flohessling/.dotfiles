@@ -40,7 +40,7 @@ vim.opt.splitkeep = "cursor"
 vim.o.shortmess = "filnxtToOFWIcC"
 
 -- Native floating window borders (replaces dressing.nvim + hover border hacks)
-vim.o.winborder = "single"
+vim.o.winborder = "rounded"
 
 -- [[ Diagnostics ]]
 local icons = {

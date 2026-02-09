@@ -16,7 +16,7 @@ return {
                 vendor = true,
             },
             hints = {
-                ssignVariableTypes = true,
+                asignVariableTypes = true,
                 compositeLiteralFields = true,
                 compositeLiteralTypes = true,
                 constantValues = true,

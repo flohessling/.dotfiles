@@ -106,12 +106,10 @@ vim.pack.add({
     -- Mini
     { src = "https://github.com/echasnovski/mini.nvim" },
 
-    -- Telescope & fzf
-    { src = "https://github.com/nvim-telescope/telescope.nvim" },
-    { src = "https://github.com/ibhagwan/fzf-lua" },
-    { src = "https://github.com/nvim-lua/plenary.nvim" },
+
 
     -- Testing
+    { src = "https://github.com/nvim-lua/plenary.nvim" },
     { src = "https://github.com/nvim-neotest/neotest" },
     { src = "https://github.com/nvim-neotest/nvim-nio" },
     { src = "https://github.com/fredrikaverpil/neotest-golang" },

@@ -25,12 +25,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
         nmap("<leader>la", vim.lsp.buf.code_action, "Code Action")
 
         -- stylua: ignore start
-        nmap("gd", "<cmd>lua require('fzf-lua').lsp_definitions({jump1 = true})<CR>", "[G]oto [D]efinition")
-        nmap("gr", "<cmd>lua require('fzf-lua').lsp_references({jump1 = true, ignore_current_line = true})<CR>", "[G]oto [R]eferences")
-        nmap("gI", "<cmd>lua require('fzf-lua').lsp_implementations({jump1 = true})<CR>", "[G]oto [I]mplementation")
-        nmap("<leader>D", "<cmd>lua require('fzf-lua').lsp_type_definitions({jump1 = true})<CR>", "Type [D]efinition")
-        nmap("<leader>ds", "<cmd>lua require('fzf-lua').lsp_document_symbols()<CR>", "[D]ocument [S]ymbols")
-        nmap("<leader>ws", "<cmd>lua require('fzf-lua').lsp_dynamic_workspace_symbols()<CR>", "[W]orkspace [S]ymbols")
+        nmap("gd", function() Snacks.picker.lsp_definitions() end, "[G]oto [D]efinition")
+        nmap("gr", function() Snacks.picker.lsp_references() end, "[G]oto [R]eferences")
+        nmap("gI", function() Snacks.picker.lsp_implementations() end, "[G]oto [I]mplementation")
+        nmap("<leader>D", function() Snacks.picker.lsp_type_definitions() end, "Type [D]efinition")
+        nmap("<leader>ds", function() Snacks.picker.lsp_symbols() end, "[D]ocument [S]ymbols")
+        nmap("<leader>ws", function() Snacks.picker.lsp_workspace_symbols() end, "[W]orkspace [S]ymbols")
         -- stylua: ignore end
 
         nmap("K", vim.lsp.buf.hover, "Hover Documentation")

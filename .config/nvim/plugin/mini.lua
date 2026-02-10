@@ -11,9 +11,7 @@ require("mini.icons").setup()
 require("mini.bracketed").setup()
 require("mini.surround").setup()
 require("mini.trailspace").setup()
-require("mini.bufremove").setup()
 require("mini.cursorword").setup()
-require("mini.notify").setup()
 require("mini.splitjoin").setup()
 require("mini.misc").setup({ make_global = { "setup_auto_root" } })
 require("mini.misc").setup_auto_root()
@@ -33,8 +31,7 @@ require("mini.indentscope").setup({
 require("mini.comment").setup({
     options = {
         custom_commentstring = function()
-            return require("ts_context_commentstring.internal").calculate_commentstring()
-                or vim.bo.commentstring
+            return require("ts_context_commentstring.internal").calculate_commentstring() or vim.bo.commentstring
         end,
     },
     mappings = {
@@ -85,7 +82,6 @@ vim.api.nvim_create_autocmd("user", {
 
 -- [[ Keymaps ]]
 -- stylua: ignore start
-vim.keymap.set("n", "<leader>X", function() require("mini.bufremove").delete(0, false) end, { desc = "Delete Buffer" })
 vim.keymap.set("n", "<leader>e", function()
     if not MiniFiles.close() then MiniFiles.open(vim.api.nvim_buf_get_name(0)) end
 end, { desc = "open in file explorer" })

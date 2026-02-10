@@ -187,9 +187,3 @@ require("gitsigns").setup({
 
 vim.keymap.set("n", "<leader>gp", "<cmd>Gitsigns preview_hunk<CR>", { desc = "Git preview hunk" })
 vim.keymap.set("n", "<leader>gr", "<cmd>Gitsigns reset_hunk<CR>", { desc = "Git reset hunk" })
-
--- ==========================================================================
--- LazyGit
--- ==========================================================================
-vim.keymap.set("n", "<leader>gg", ":LazyGit<CR>", { desc = "Lazygit" })
-vim.keymap.set("n", "<leader>gf", ":LazyGitFilterCurrentFile<CR>", { desc = "Lazygit filter current file" })

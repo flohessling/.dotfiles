@@ -80,6 +80,7 @@ vim.pack.add({
     -- Colorscheme & UI
     { src = "https://github.com/flohessling/no-clown-fiesta.nvim" },
     { src = "https://github.com/nvim-lualine/lualine.nvim" },
+    { src = "https://github.com/folke/snacks.nvim" },
     { src = "https://github.com/zbirenbaum/copilot.lua" },
 
     -- Treesitter
@@ -125,7 +126,7 @@ vim.pack.add({
     { src = "https://github.com/mcauley-penney/visual-whitespace.nvim" },
     { src = "https://github.com/folke/todo-comments.nvim" },
     { src = "https://github.com/lewis6991/gitsigns.nvim" },
-    { src = "https://github.com/kdheepak/lazygit.nvim" },
+
 }, { load = true })
 
 -- [[ Colorscheme ]]

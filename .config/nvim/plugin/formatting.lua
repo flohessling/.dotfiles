@@ -51,7 +51,3 @@ require("conform").setup({
 vim.keymap.set({ "n", "v" }, "<leader>F", function()
     require("conform").format()
 end, { desc = "Format buffer" })
-
-vim.keymap.set({ "n", "v" }, "<leader>lF", function()
-    require("conform").format()
-end, { desc = "Format buffer" })

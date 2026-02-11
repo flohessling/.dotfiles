@@ -106,8 +106,6 @@ vim.pack.add({
     -- Mini
     { src = "https://github.com/echasnovski/mini.nvim" },
 
-
-
     -- Testing
     { src = "https://github.com/nvim-lua/plenary.nvim" },
     { src = "https://github.com/nvim-neotest/neotest" },
@@ -116,7 +114,7 @@ vim.pack.add({
     { src = "https://github.com/andythigpen/nvim-coverage" },
 
     -- Editor
-    { src = "https://github.com/ThePrimeagen/harpoon" },
+    { src = "https://github.com/ThePrimeagen/harpoon", version = "harpoon2" },
     { src = "https://github.com/f-person/git-blame.nvim" },
     { src = "https://github.com/tpope/vim-abolish" },
     { src = "https://github.com/mbbill/undotree" },
@@ -124,7 +122,6 @@ vim.pack.add({
     { src = "https://github.com/mcauley-penney/visual-whitespace.nvim" },
     { src = "https://github.com/folke/todo-comments.nvim" },
     { src = "https://github.com/lewis6991/gitsigns.nvim" },
-
 }, { load = true })
 
 -- [[ Colorscheme ]]

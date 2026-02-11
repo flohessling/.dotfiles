@@ -17,7 +17,8 @@ require("snacks").setup({
 
 -- lazygit
 vim.keymap.set("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "Lazygit" })
-vim.keymap.set("n", "<leader>gf", function() Snacks.lazygit.log_file() end, { desc = "Lazygit filter current file" })
+vim.keymap.set("n", "<leader>gf", function() Snacks.lazygit.log_file() end, { desc = "Lazygit history for current file" })
+vim.keymap.set("n", "<leader>gl", function() Snacks.lazygit.log() end, { desc = "Lazygit Log (cwd)" })
 
 -- bufdelete
 vim.keymap.set("n", "<leader>X", function() Snacks.bufdelete() end, { desc = "Delete Buffer" })
@@ -34,7 +35,6 @@ vim.keymap.set("n", "<leader>sw", function() Snacks.picker.grep_word() end, { de
 vim.keymap.set("n", "<leader>sd", function() Snacks.picker.diagnostics() end, { desc = "Search diagnostics" })
 vim.keymap.set("n", "<leader>sh", function() Snacks.picker.help() end, { desc = "Search help" })
 vim.keymap.set("n", "<leader>hk", function() Snacks.picker.keymaps() end, { desc = "Search hotkeys" })
-vim.keymap.set("n", "<leader>sl", function() Snacks.picker.resume() end, { desc = "Search last (resume)" })
 vim.keymap.set("n", "<leader>sr", function() Snacks.picker.resume() end, { desc = "Search resume" })
 
 -- stylua: ignore end

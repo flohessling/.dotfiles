@@ -1,4 +1,4 @@
--- [[ Enable LSP servers ]]
+-- Enable LSP servers
 -- Each server needs a matching config in lsp/<name>.lua
 vim.lsp.enable({
     "gopls",
@@ -9,7 +9,7 @@ vim.lsp.enable({
     "yaml_ls",
 })
 
--- [[ LSP Keymaps ]]
+-- LSP Keymaps
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
         local bufnr = args.buf
@@ -38,16 +38,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
         nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
         -- Create a command `:Format` local to the LSP buffer
-        vim.api.nvim_buf_create_user_command(
-            bufnr,
-            "Format",
-            function(_) vim.lsp.buf.format() end,
-            { desc = "Format current buffer with LSP" }
-        )
+        vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
+            vim.lsp.buf.format()
+        end, { desc = "Format current buffer with LSP" })
     end,
 })
 
--- [[ Go: organize imports on save ]]
+-- Go: organize imports on save
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*.go",
     callback = function()
@@ -62,8 +59,5 @@ vim.api.nvim_create_autocmd("BufWritePre", {
                 end
             end
         end
-        vim.lsp.buf.format({ async = false })
     end,
 })
-
-

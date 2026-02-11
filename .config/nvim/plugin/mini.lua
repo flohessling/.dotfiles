@@ -1,4 +1,4 @@
--- [[ mini.indentscope: disable for certain filetypes ]]
+-- mini.indentscope: disable for certain filetypes
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "help", "alpha", "dashboard", "neo-tree" },
     callback = function()
@@ -6,14 +6,14 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
--- [[ Module setup ]]
+-- Module setup
 require("mini.icons").setup()
 require("mini.bracketed").setup()
 require("mini.surround").setup()
 require("mini.trailspace").setup()
 require("mini.cursorword").setup()
 require("mini.splitjoin").setup()
-require("mini.misc").setup({ make_global = { "setup_auto_root" } })
+require("mini.misc").setup()
 require("mini.misc").setup_auto_root()
 
 require("mini.move").setup({})
@@ -47,7 +47,7 @@ require("mini.files").setup({
     },
 })
 
--- [[ mini.files: split mappings ]]
+-- mini.files: split mappings
 local MiniFiles = require("mini.files")
 local map_split = function(buf_id, lhs, direction)
     local rhs = function()
@@ -80,7 +80,7 @@ vim.api.nvim_create_autocmd("user", {
     end,
 })
 
--- [[ Keymaps ]]
+-- Keymaps
 -- stylua: ignore start
 vim.keymap.set("n", "<leader>e", function()
     if not MiniFiles.close() then MiniFiles.open(vim.api.nvim_buf_get_name(0)) end

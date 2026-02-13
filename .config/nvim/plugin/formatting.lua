@@ -26,7 +26,18 @@ require("conform").setup({
             prepend_args = { "-i", "2" },
         },
         gci = {
-            args = { "-s", "-w" },
+            args = {
+                "write",
+                "--skip-generated",
+                "-s",
+                "Standard",
+                "-s",
+                "Default",
+                "-s",
+                "Prefix(github.com/shopware)",
+                "--skip-vendor",
+                "$FILENAME",
+            },
         },
         golines = {
             prepend_args = {

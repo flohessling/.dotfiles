@@ -16,9 +16,18 @@ require("mini.splitjoin").setup()
 require("mini.misc").setup()
 require("mini.misc").setup_auto_root()
 
-require("mini.move").setup({})
--- to use meta keys with iterm change the setting in iterm for option key to +Esc
--- profiles > keys > general > option key acts as +Esc
+require("mini.move").setup({
+    mappings = {
+        left = "<C-h>",
+        right = "<C-l>",
+        down = "<C-j>",
+        up = "<C-k>",
+        line_left = "<M-h>",
+        line_right = "<M-l>",
+        line_down = "<M-j>",
+        line_up = "<M-k>",
+    },
+})
 
 require("mini.indentscope").setup({
     symbol = "│",

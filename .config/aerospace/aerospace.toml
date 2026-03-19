@@ -175,3 +175,24 @@ on-mode-changed = []
 [[on-window-detected]]
     if.workspace = "9"
     run = "layout floating"
+
+[[on-window-detected]]
+    if.app-id = "com.tidal.desktop"
+    run = "layout floating"
+
+[[on-window-detected]]
+    if.app-id = "com.1password.1password"
+    run = "layout floating"
+
+[[on-window-detected]]
+    if.app-id = "com.microsoft.teams2"
+    run = "layout floating"
+
+[[on-window-detected]]
+    if.app-id = "com.tinyspeck.slackmacgap"
+    run = "layout floating"
+
+[[on-window-detected]]
+    if.app-id = "com.microsoft.Outlook"
+    run = "layout floating"
+

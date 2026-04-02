@@ -8,11 +8,11 @@ tap "sst/tap"
 tap "keidarcy/tap"
 tap "danvergara/tools"
 tap "anomalyco/tap"
-tap "nikitabobko/tap"
+# tap "nikitabobko/tap"
 
 # casks
 cask "1password-cli"
-cask "nikitabobko/tap/aerospace"
+# cask "nikitabobko/tap/aerospace"
 cask "session-manager-plugin"
 cask "microsoft-teams", greedy: true
 cask "mysql-shell"
@@ -59,7 +59,7 @@ brew "kubectl"
 brew "lazygit"
 brew "mysql-client"
 brew "nats-io/homebrew-nats-tools/nats"
-brew "neovim", args: ["HEAD"]
+brew "neovim"
 brew "nmap"
 brew "node"
 brew "pnpm"

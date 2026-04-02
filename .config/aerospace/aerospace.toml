@@ -170,10 +170,10 @@ on-mode-changed = []
     alt-shift-l = ['join-with right', 'mode main']
 
 [workspace-to-monitor-force-assignment]
-    9 = 2
+    3 = 2
 
 [[on-window-detected]]
-    if.workspace = "9"
+    if.workspace = "3"
     run = "layout floating"
 
 [[on-window-detected]]
@@ -196,3 +196,6 @@ on-mode-changed = []
     if.app-id = "com.microsoft.Outlook"
     run = "layout floating"
 
+[[on-window-detected]]
+    if.app-id = "com.dmitrynikolaev.numi"
+    run = "layout floating"

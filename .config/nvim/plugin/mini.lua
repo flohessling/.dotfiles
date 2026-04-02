@@ -37,6 +37,8 @@ require("mini.indentscope").setup({
     },
 })
 
+require("ts_context_commentstring").setup({ enable_autocmd = false })
+
 require("mini.comment").setup({
     options = {
         custom_commentstring = function()

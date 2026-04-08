@@ -10,6 +10,11 @@ require("snacks").setup({
                 truncate = 80,
             },
         },
+        sources = {
+            grep = { hidden = true },
+            files = { hidden = true },
+            explorer = { hidden = true },
+        },
     },
 })
 

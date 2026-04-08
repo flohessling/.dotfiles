@@ -8,7 +8,7 @@ require("conform").setup({
     },
     formatters_by_ft = {
         go = { "gci", "golines" },
-        hcl = { "hcl" },
+        hcl = { "terragrunt_hclfmt" },
         json = { "jq" },
         lua = { "stylua" },
         markdown = { "prettier" },

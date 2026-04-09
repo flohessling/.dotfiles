@@ -76,8 +76,11 @@ export TF_CLI_CONFIG_FILE="$XDG_CONFIG_HOME/terraform/config.tfrc"
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
 export HOMEBREW_BUNDLE_FILE="$XDG_CONFIG_HOME/brewfile/Brewfile"
 
-export GOPATH="$HOME/code/go"
-export GOPRIVATE="gitlab.shopware.com"
+# configure go
+export GOPATH="$HOME/go"
+export GOCACHE="$XDG_CACHE_HOME"/go-build
+export GOMODCACHE="$XDG_CACHE_HOME"/go-mod
+export GOPRIVATE="github.com/shopware"
 
 # configure paths
 export PATH="$PATH:$HOME/bin"

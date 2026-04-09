@@ -1,0 +1,4 @@
+[user]
+	email = "flohessling@proton.me"
+	name = "Flo Hessling"
+	signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDn2PfoRVF81hGahkDlH0D6LyLzf4S8CbDHQku0aK+Eu"

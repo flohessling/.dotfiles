@@ -27,6 +27,7 @@ vim.opt.swapfile = false
 vim.opt.showmode = false
 vim.opt.laststatus = 3
 vim.opt.wrap = false
+vim.opt.relativenumber = true
 
 vim.opt.spelllang:append("cjk")
 vim.opt.whichwrap:append("<,>,[,],h,l")

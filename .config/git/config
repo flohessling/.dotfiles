@@ -37,3 +37,6 @@
 
 [includeIf "gitdir:~/personal/"]
     path = ~/.config/git/config-personal
+
+[url "ssh://git@github.com/"]
+    insteadOf = https://github.com/

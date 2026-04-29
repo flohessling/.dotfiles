@@ -11,11 +11,12 @@
 
 [gpg]
 	format = "ssh"
-	program = "/opt/homebrew/bin/gpg"
 
 [gpg "ssh"]
 	allowedSignersFile = "~/.ssh/allowed_signers"
-	program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+[include]
+	path = ~/.config/git/config-platform
 
 [init]
 	defaultBranch = "main"

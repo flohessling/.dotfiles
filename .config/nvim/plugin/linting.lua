@@ -1,8 +1,3 @@
-local golangcilint = require("lint").linters.golangcilint
-golangcilint.args[#golangcilint.args] = function()
-    return vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ":p")
-end
-
 require("lint").linters_by_ft = {
     dockerfile = { "hadolint" },
     go = { "golangcilint" },

@@ -1,8 +1,6 @@
-# init shell with brew
+# init shell with brew (darwin only — linux uses pacman/yay)
 if [[ $(uname) == "Darwin" ]]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
-else
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
 # oh-my-zsh config
@@ -24,9 +22,15 @@ bindkey -e
 
 # load plugins
 autoload -U compinit && compinit
-source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $HOMEBREW_PREFIX/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+if [[ $(uname) == "Darwin" ]]; then
+    source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source $HOMEBREW_PREFIX/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+else
+    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+fi
 
 # history options
 HISTSIZE="10000"
@@ -87,8 +91,15 @@ export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:/usr/local/bin"
 export PATH="$PATH:$GOPATH/bin"
 export PATH="$PATH:$HOME/.local/bin"
-export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
-export PATH="$PATH:/opt/homebrew/opt/mysql-client/bin"
+if [[ $(uname) == "Darwin" ]]; then
+    export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
+    export PATH="$PATH:/opt/homebrew/opt/mysql-client/bin"
+fi
+
+# linux-only env
+if [[ $(uname) == "Linux" ]]; then
+    export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
+fi
 
 # dotfiles alias
 alias dot="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
@@ -103,7 +114,6 @@ alias -- tg=terragrunt
 alias -- notes='cd ~/notes && v home.md'
 alias -- sso='aws sso login --sso-session root'
 alias -- t='tmux new -As0'
-alias -- tailscale=/Applications/Tailscale.app/Contents/MacOS/Tailscale
 alias -- v=nvim
 alias -- vi=nvim
 alias -- vim=nvim
@@ -111,6 +121,14 @@ alias -- wgdown-prod='sudo wg-quick down prod'
 alias -- wgdown-staging='sudo wg-quick down staging'
 alias -- wgup-prod='sudo wg-quick up prod'
 alias -- wgup-staging='sudo wg-quick up staging'
+
+# platform-specific aliases
+if [[ $(uname) == "Darwin" ]]; then
+    alias -- tailscale=/Applications/Tailscale.app/Contents/MacOS/Tailscale
+else
+    # mac muscle memory on linux
+    alias -- open='xdg-open'
+fi
 
 # custom scripts
 for f in $XDG_CONFIG_HOME/zsh/scripts.d/*; do source $f; done

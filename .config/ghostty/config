@@ -1,7 +1,7 @@
 # Font
 font-family = JetBrainsMono Nerd Font Mono
-font-size = 12
-adjust-cell-width = "-10%"
+font-size = 9
+# adjust-cell-width = "-10%"
 
 # Window settings
 background-opacity = 0.96
@@ -56,13 +56,13 @@ palette = 14=#83b3aa
 palette = 15=#e1e1e1
 
 # Keybindings
-keybind = cmd+d=new_split:right
-keybind = cmd+shift+d=new_split:down
-keybind = cmd+left=goto_split:previous
-keybind = cmd+right=goto_split:next
-keybind = cmd+l=goto_split:next
-keybind = cmd+shift+left=resize_split:left,10
-keybind = cmd+shift+right=resize_split:right,10
-keybind = cmd+shift+up=resize_split:up,10
-keybind = cmd+shift+down=resize_split:down,10
+keybind = super+d=new_split:right
+keybind = super+shift+d=new_split:down
+keybind = super+left=goto_split:previous
+keybind = super+right=goto_split:next
+keybind = super+l=goto_split:next
+keybind = super+shift+left=resize_split:left,10
+keybind = super+shift+right=resize_split:right,10
+keybind = super+shift+up=resize_split:up,10
+keybind = super+shift+down=resize_split:down,10
 keybind = shift+enter=text:\x1b\r

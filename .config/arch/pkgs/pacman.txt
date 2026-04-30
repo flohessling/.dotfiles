@@ -1,0 +1,93 @@
+# Official-repo packages (core/extra).
+# Comments and blank lines must be stripped before passing to pacman, e.g.:
+#   grep -vE '^\s*(#|$)' pacman.txt | sudo pacman -S --needed --noconfirm -
+
+# --- shells & multiplexer ---
+zsh
+zsh-autosuggestions
+zsh-history-substring-search
+zsh-syntax-highlighting
+tmux
+
+# --- core CLI ---
+bat
+curl
+ffmpeg
+fzf
+git
+git-crypt
+gnupg
+btop
+htop
+jq
+nmap
+ripgrep
+speedtest-cli
+tealdeer
+tree
+unzip
+wget
+zip
+
+# --- editor & fonts ---
+neovim
+ttf-hack-nerd
+ttf-jetbrains-mono
+ttf-jetbrains-mono-nerd
+
+# --- terminal ---
+ghostty
+
+# --- dev tooling ---
+github-cli
+lazygit
+docker
+docker-buildx
+docker-compose
+nodejs
+npm
+pnpm
+
+# --- desktop apps (in extra, no need for AUR variants) ---
+obsidian
+
+# --- PHP ---
+# NOTE: Arch ships only current PHP. The Brewfile pinned 8.3 via shivammathur (mac-only tap).
+# If you need 8.3 specifically, install via AUR (php83) or run PHP work in a container.
+# php
+# composer
+
+# --- cloud / infra ---
+aws-cli-v2
+azure-cli
+kubectl
+k9s
+terraform
+packer
+opentofu
+
+# --- databases ---
+postgresql
+mariadb-clients
+
+# --- networking ---
+# wireguard-go from the Brewfile is a userspace impl; on Arch the kernel module is preferred.
+# Just install wireguard-tools and use the in-kernel WireGuard.
+# wireguard-tools
+
+# --- LSPs / formatters / linters (system-wide; alt: install via Mason inside nvim) ---
+buf
+delve
+gofumpt
+gopls
+golangci-lint
+lua-language-server
+prettier
+shellcheck
+shfmt
+yaml-language-server
+yamllint
+
+# --- Browser ---
+# Stays here only as a fallback; primary browser (zen) is installed from AUR.
+chromium

@@ -1,0 +1,43 @@
+# AUR packages (paru/yay).
+# Strip comments before piping, e.g.:
+#   grep -vE '^\s*(#|$)' aur.txt | paru -S --needed --noconfirm -
+
+# --- desktop apps (Brewfile cask -> AUR equivalents) ---
+1password-cli
+aws-session-manager-plugin
+gitify
+postman-bin
+tidal-hifi
+zen-browser-bin
+
+# --- CLI tools not in official repos ---
+act
+dblab
+e1s
+lazysql
+natscli
+opencode-bin
+phpstan
+ratchet
+temporal-cli
+terragrunt
+trivy
+
+# --- LSPs / formatters / linters not in official repos ---
+dockerfile-language-server
+gci
+hadolint-bin
+jsonlint
+marksman
+nixfmt
+sqlfmt
+stylua
+terraform-ls
+tflint
+vscode-langservers-extracted
+vtsls
+
+# --- temporarily disabled (AUR build chain issues; revisit periodically) ---
+# golines       — exit 4, AUR build failure; install via Mason in nvim or `go install github.com/segmentio/golines@latest` in the meantime
+# php-cs-fixer  — exit 8, php-box make-dep issues; install via Mason in nvim or composer per-project
+# yamlfix       — exit 4, blocked by pydantic-core/pyo3 lag behind Python 3.14; install via Mason in nvim or pipx until pydantic-core ships pyo3 0.25+

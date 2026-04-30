@@ -1,0 +1,15 @@
+# Packages to remove from the system (typically Omarchy defaults you don't want).
+# `pacman -Rns` is used → also removes orphaned dependencies and config files (.pacsave skipped).
+# Per-package check in bootstrap.sh means missing entries are silently skipped (idempotent).
+#
+# Same file works for both repo and AUR-sourced packages — pacman doesn't care where it came from.
+
+# --- music ---
+spotify
+
+# --- replaced by alternatives in pacman.txt ---
+# tldr → replaced by tealdeer (rust impl, faster)
+tldr
+
+# --- add more here as you find Omarchy defaults you don't use ---
+# (eyeball with: pacman -Qe   for explicitly-installed packages)

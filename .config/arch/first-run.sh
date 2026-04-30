@@ -78,6 +78,17 @@ if [[ -d $nvim_pack ]]; then
   rm -rf "$nvim_pack"
 fi
 
+# ── project dirs
+# Rename ~/Work (omarchy default) to ~/work for consistency.
+# Ensure ~/personal exists too — git config has `includeIf gitdir:~/personal/`
+# pointing at config-personal, so the directory needs to be present for the
+# include to actually fire on personal projects.
+if [[ -d "$HOME/Work" && ! -e "$HOME/work" ]]; then
+  log "renaming ~/Work to ~/work"
+  mv "$HOME/Work" "$HOME/work"
+fi
+mkdir -p "$HOME/personal"
+
 # lazy.nvim residue from Omarchy default — we use vim.pack instead
 if [[ -d "$HOME/.local/share/nvim/lazy" ]]; then
   log "removing lazy.nvim residue (we use vim.pack)"

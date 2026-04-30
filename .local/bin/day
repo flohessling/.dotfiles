@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
 
-today=$(date +"%Y-%m-%d")
-tomorrow=$(gdate -d "tomorrow" '+%Y-%m-%d')
-yesterday=$(gdate -d "yesterday" '+%Y-%m-%d')
+# gdate on macOS (via `brew install coreutils`) for GNU date semantics;
+# linux ships GNU date as the system `date`, so the fallback works natively.
+date_cmd=$(command -v gdate || command -v date)
+
+today=$($date_cmd +"%Y-%m-%d")
+tomorrow=$($date_cmd -d "tomorrow" '+%Y-%m-%d')
+yesterday=$($date_cmd -d "yesterday" '+%Y-%m-%d')
 file="$HOME"'/notes/01-daily/'"$today".md
 
 cd "$HOME"/notes || exit

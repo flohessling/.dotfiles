@@ -10,20 +10,23 @@
 set -euo pipefail
 
 # ── guards
-[[ "$(uname -s)" == Linux ]] || { echo "linux-only"; exit 1; }
+[[ "$(uname -s)" == Linux ]] || {
+    echo "linux-only"
+    exit 1
+}
 
 [[ -d "$HOME/.dotfiles" ]] || {
-  echo "bare repo not found at ~/.dotfiles. clone first." >&2
-  exit 1
+    echo "bare repo not found at ~/.dotfiles. clone first." >&2
+    exit 1
 }
 
 command -v op >/dev/null || {
-  echo "1password-cli (op) not found." >&2
-  exit 1
+    echo "1password-cli (op) not found." >&2
+    exit 1
 }
 
 if ! op whoami >/dev/null 2>&1; then
-  cat >&2 <<'EOF'
+    cat >&2 <<'EOF'
 1Password CLI not signed in...
 
 open 1Password → Settings → Developer:
@@ -32,7 +35,7 @@ open 1Password → Settings → Developer:
 
 then re-run this script.
 EOF
-  exit 1
+    exit 1
 fi
 
 # ── helpers
@@ -43,15 +46,15 @@ log() { printf '\033[1;34m>\033[0m %s\n' "$*"; }
 log "installing git-crypt"
 sudo pacman -S --needed --noconfirm git-crypt
 
-# ── unlock with key from 1Password 
+# ── unlock with key from 1Password
 if [[ -f "$HOME/.dotfiles/git-crypt/keys/default/0" ]]; then
-  log "git-crypt already unlocked, skipping"
+    log "git-crypt already unlocked, skipping"
 else
-  log "fetching key from 1Password and unlocking"
-  op document get dotfiles --force | dot crypt unlock -
+    log "fetching key from 1Password and unlocking"
+    op document get dotfiles --force | dot crypt unlock -
 fi
 
-# ── re-checkout so the smudge filter actually runs 
+# ── re-checkout so the smudge filter actually runs
 log "re-applying smudge filter to encrypted files"
 cd "$HOME"
 dot checkout HEAD -- .
@@ -63,7 +66,7 @@ dot remote set-url origin git@github.com:flohessling/.dotfiles.git
 # ── platform-conditional git config (gpg/op-ssh-sign paths)
 log "linking platform-specific git config"
 ln -sf "config-$(uname -s | tr '[:upper:]' '[:lower:]')" \
-       "$HOME/.config/git/config-platform"
+    "$HOME/.config/git/config-platform"
 
 # ── nvim: wipe all vim.pack plugins for a clean re-clone
 # vim.pack clones via https URLs that ~/.gitconfig rewrites to ssh, so any
@@ -74,8 +77,8 @@ ln -sf "config-$(uname -s | tr '[:upper:]' '[:lower:]')" \
 # machine, mildly wasteful on re-runs.
 nvim_pack="$HOME/.local/share/nvim/site/pack/core/opt"
 if [[ -d $nvim_pack ]]; then
-  log "wiping all vim.pack plugins (will re-clone on next nvim launch)"
-  rm -rf "$nvim_pack"
+    log "wiping all vim.pack plugins (will re-clone on next nvim launch)"
+    rm -rf "$nvim_pack"
 fi
 
 # ── project dirs
@@ -84,15 +87,15 @@ fi
 # pointing at config-personal, so the directory needs to be present for the
 # include to actually fire on personal projects.
 if [[ -d "$HOME/Work" && ! -e "$HOME/work" ]]; then
-  log "renaming ~/Work to ~/work"
-  mv "$HOME/Work" "$HOME/work"
+    log "renaming ~/Work to ~/work"
+    mv "$HOME/Work" "$HOME/work"
 fi
 mkdir -p "$HOME/personal"
 
 # lazy.nvim residue from Omarchy default — we use vim.pack instead
 if [[ -d "$HOME/.local/share/nvim/lazy" ]]; then
-  log "removing lazy.nvim residue (we use vim.pack)"
-  rm -rf "$HOME/.local/share/nvim/lazy" "$HOME/.local/share/nvim/lazyvim"
+    log "removing lazy.nvim residue (we use vim.pack)"
+    rm -rf "$HOME/.local/share/nvim/lazy" "$HOME/.local/share/nvim/lazyvim"
 fi
 
 # ── done

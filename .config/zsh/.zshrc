@@ -101,9 +101,6 @@ if [[ $(uname) == "Linux" ]]; then
     export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
 fi
 
-# ls dir color → NCF medium_gray_blue (#A2B5C1), overrides dircolors default bold-blue
-export LS_COLORS="${LS_COLORS}:di=38;2;162;181;193"
-
 # dotfiles alias
 alias dot="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 

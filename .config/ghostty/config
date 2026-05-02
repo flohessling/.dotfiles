@@ -1,6 +1,6 @@
 # Font
 font-family = JetBrainsMono Nerd Font Mono
-font-size = 9
+font-size = 10
 # adjust-cell-width = "-10%"
 
 # Window settings
@@ -29,32 +29,6 @@ cursor-color = 81c784
 # Tab settings
 gtk-tabs-location = hidden
 
-# Colors (no-clown-fiesta variant, aligned with nvim palette; OLED-darker bg)
-foreground = E1E1E1
-background = 0d0e10
-
-selection-foreground = d9dde7
-selection-background = 4d5568
-
-split-divider-color = 373737
-
-palette = 0=#151515
-palette = 1=#b46958
-palette = 2=#90A959
-palette = 3=#F4BF75
-palette = 4=#80909F
-palette = 5=#AA759F
-palette = 6=#88AFA2
-palette = 7=#E1E1E1
-palette = 8=#AFAFAF
-palette = 9=#201919
-palette = 10=#1C2019
-palette = 11=#F4BF75
-palette = 12=#191A20
-palette = 13=#AA759F
-palette = 14=#88AFA2
-palette = 15=#E1E1E1
-
 # Keybindings
 keybind = super+d=new_split:right
 keybind = super+shift+d=new_split:down
@@ -66,3 +40,33 @@ keybind = super+shift+right=resize_split:right,10
 keybind = super+shift+up=resize_split:up,10
 keybind = super+shift+down=resize_split:down,10
 keybind = shift+enter=text:\x1b\r
+
+# Omarchy theme color
+config-file = ~/.config/omarchy/current/theme/ghostty.conf
+
+# # Colors (no-clown-fiesta variant, aligned with nvim palette; OLED-darker bg)
+# foreground = E1E1E1
+# background = 0d0e10
+#
+# selection-foreground = d9dde7
+# selection-background = 4d5568
+#
+# split-divider-color = 373737
+#
+# palette = 0=#151515
+# palette = 1=#b46958
+# palette = 2=#90A959
+# palette = 3=#F4BF75
+# palette = 4=#80909F
+# palette = 5=#AA759F
+# palette = 6=#88AFA2
+# palette = 7=#E1E1E1
+# palette = 8=#AFAFAF
+# palette = 9=#201919
+# palette = 10=#1C2019
+# palette = 11=#F4BF75
+# palette = 12=#191A20
+# palette = 13=#AA759F
+# palette = 14=#88AFA2
+# palette = 15=#E1E1E1
+#

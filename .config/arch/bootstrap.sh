@@ -6,7 +6,10 @@
 set -euo pipefail
 
 # ── guards
-[[ "$(uname -s)" == Linux ]] || { echo "linux-only"; exit 1; }
+[[ "$(uname -s)" == Linux ]] || {
+    echo "linux-only"
+    exit 1
+}
 
 # ── helpers
 log() { printf '\033[1;34m>\033[0m %s\n' "$*"; }
@@ -24,10 +27,10 @@ PKG_DIR="$HOME/.config/arch/pkgs"
 log "removing unwanted packages"
 installed_packages=$(pacman -Qq)
 while IFS= read -r pkg; do
-  [[ -z $pkg ]] && continue
-  if grep -qx "$pkg" <<<"$installed_packages"; then
-    sudo pacman -Rns --noconfirm "$pkg"
-  fi
+    [[ -z $pkg ]] && continue
+    if grep -qx "$pkg" <<<"$installed_packages"; then
+        sudo pacman -Rns --noconfirm "$pkg"
+    fi
 done < <(strip_comments "$PKG_DIR/remove-pacman.txt")
 
 # ── install pacman packages
@@ -49,63 +52,66 @@ omarchy-install-terminal ghostty
 # xdg-settings is what omarchy-launch-browser reads. Idempotent: skip if
 # already set; gracefully skip if zen.desktop isn't present yet.
 if [[ -f /usr/share/applications/zen.desktop || -f $HOME/.local/share/applications/zen.desktop ]]; then
-  current_browser=$(xdg-settings get default-web-browser 2>/dev/null || echo "")
-  if [[ $current_browser != "zen.desktop" ]]; then
-    log "setting zen as default browser"
-    xdg-settings set default-web-browser zen.desktop
-  else
-    log "zen already default browser, skipping"
-  fi
+    current_browser=$(xdg-settings get default-web-browser 2>/dev/null || echo "")
+    if [[ $current_browser != "zen.desktop" ]]; then
+        log "setting zen as default browser"
+        xdg-settings set default-web-browser zen.desktop
+    else
+        log "zen already default browser, skipping"
+    fi
 else
-  log "zen.desktop not found, skipping default-browser step"
+    log "zen.desktop not found, skipping default-browser step"
 fi
 
 # ── oh-my-zsh
 # .zshrc sources $ZSH/oh-my-zsh.sh; install if missing so the first zsh
 # launch after chsh doesn't error out.
 if [[ ! -d "$HOME/.config/zsh/ohmyzsh" ]]; then
-  log "installing oh-my-zsh"
-  ZSH="$HOME/.config/zsh/ohmyzsh" RUNZSH=no CHSH=no \
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    log "installing oh-my-zsh"
+    ZSH="$HOME/.config/zsh/ohmyzsh" RUNZSH=no CHSH=no \
+        sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 fi
 
 # ── default shell: zsh
 target_shell=$(command -v zsh)
 current_shell=$(getent passwd "$USER" | cut -d: -f7)
 if [[ "$current_shell" != "$target_shell" ]]; then
-  log "setting zsh as default login shell"
-  sudo chsh -s "$target_shell" "$USER"
+    log "setting zsh as default login shell"
+    sudo chsh -s "$target_shell" "$USER"
 else
-  log "zsh already default, skipping"
+    log "zsh already default, skipping"
 fi
 
 # ── webapps: remove omarchy defaults i don't use
 # `|| true` so missing ones don't abort under set -e.
 log "removing unwanted default webapps"
 omarchy-webapp-remove \
-  "Basecamp" \
-  "ChatGPT" \
-  "Figma" \
-  "Fizzy" \
-  "GitHub" \
-  "Google Contacts" \
-  "Google Maps" \
-  "Google Messages" \
-  "Google Photos" \
-  "HEY" \
-  "X" \
-  "YouTube" \
-  "Zoom" \
-  || true
+    "Basecamp" \
+    "ChatGPT" \
+    "Figma" \
+    "Fizzy" \
+    "GitHub" \
+    "Google Contacts" \
+    "Google Maps" \
+    "Google Messages" \
+    "Google Photos" \
+    "HEY" \
+    "X" \
+    "YouTube" \
+    "Zoom" ||
+    true
 
 # ── webapps: install the ones tied to my hypr keybinds
 # omarchy-webapp-install <Name> <URL> <Icon>
 # Empty icon arg falls back to https://www.google.com/s2/favicons?...
 log "installing preferred webapps"
 ICON_BASE="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png"
-omarchy-webapp-install "Slack"             "https://shopware-ag.slack.com"             "$ICON_BASE/slack.png"
-omarchy-webapp-install "Outlook"           "https://outlook.cloud.microsoft"           "$ICON_BASE/microsoft-outlook.png"
-omarchy-webapp-install "Outlook Calendar"  "https://outlook.cloud.microsoft/calendar"  "$ICON_BASE/microsoft-outlook.png"
-omarchy-webapp-install "Teams"             "https://teams.cloud.microsoft"             "$ICON_BASE/microsoft-teams.png"
+omarchy-webapp-install "Slack" "https://shopware-ag.slack.com" "$ICON_BASE/slack.png"
+omarchy-webapp-install "Outlook" "https://outlook.cloud.microsoft" "$ICON_BASE/microsoft-outlook.png"
+omarchy-webapp-install "Outlook Calendar" "https://outlook.cloud.microsoft/calendar" "$ICON_BASE/microsoft-outlook.png"
+omarchy-webapp-install "Teams" "https://teams.cloud.microsoft" "$ICON_BASE/microsoft-teams.png"
+
+# ── omarchy theme
+omarchy-theme-install https://github.com/flohessling/omarchy-patina-theme.git
 
 log "bootstrap complete."

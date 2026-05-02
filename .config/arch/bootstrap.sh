@@ -112,6 +112,13 @@ omarchy-webapp-install "Outlook Calendar" "https://outlook.cloud.microsoft/calen
 omarchy-webapp-install "Teams" "https://teams.cloud.microsoft" "$ICON_BASE/microsoft-teams.png"
 
 # ── omarchy theme
+log "installing and activating patina theme for omarchy"
 omarchy-theme-install https://github.com/flohessling/omarchy-patina-theme.git
+omarchy-theme-set patina
+
+# ── wire gtk apps to active omarchy theme
+mkdir -p ~/.config/gtk-3.0 ~/.config/gtk-4.0
+ln -sf ../omarchy/current/theme/gtk.css ~/.config/gtk-3.0/gtk.css
+ln -sf ../omarchy/current/theme/gtk.css ~/.config/gtk-4.0/gtk.css
 
 log "bootstrap complete."

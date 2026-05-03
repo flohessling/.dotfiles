@@ -5,7 +5,6 @@
 # --- desktop apps (Brewfile cask -> AUR equivalents) ---
 1password-cli
 aws-session-manager-plugin
-gitify
 librepods
 postman-bin
 tidal-hifi

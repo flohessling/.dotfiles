@@ -1,7 +1,7 @@
 @import "../omarchy/current/theme/waybar.css";
 
 window#waybar {
-  background-color: alpha(@background, 0.6);
+  background-color: transparent;
 }
 
 * {
@@ -13,6 +13,16 @@ window#waybar {
   min-height: 0;
   font-family: 'JetBrainsMono Nerd Font';
   font-size: 12px;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+  background-color: alpha(@background, 0.6);
+  border: 1px solid rgba(89, 89, 89, 0.667);
+  border-radius: 6px;
+  padding: 0 14px;
+  margin-top: 2px;
 }
 
 .modules-left {
@@ -77,10 +87,6 @@ tooltip label {
 
 #custom-update {
   font-size: 10px;
-}
-
-#clock {
-  margin-left: 8.75px;
 }
 
 .hidden {

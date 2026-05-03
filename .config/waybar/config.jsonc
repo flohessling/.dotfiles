@@ -57,9 +57,8 @@
 
   "cpu": {
     "interval": 5,
-    "format": "󰍛",
-    "on-click": "omarchy-launch-or-focus-tui btop",
-    "on-click-right": "alacritty"
+    "format": "󰍛 {usage}%",
+    "on-click": "omarchy-launch-or-focus-tui btop"
   },
   "clock": {
     "format": "{:L%A %H:%M}",
@@ -81,9 +80,9 @@
     "on-click": "omarchy-launch-wifi"
   },
   "battery": {
-    "format": "{capacity}% {icon}",
-    "format-discharging": "{capacity}% {icon}",
-    "format-charging": "{capacity}% {icon}",
+    "format": "{icon} {capacity}%",
+    "format-discharging": "{icon} {capacity}%",
+    "format-charging": "{icon} {capacity}%",
     "format-plugged": "",
     "format-icons": {
       "charging": ["󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
@@ -158,7 +157,7 @@
   "custom/github-notify": {
     "exec": "$HOME/.config/waybar/scripts/github-notifications.sh",
     "return-type": "json",
-    "format": "{}{icon}",
+    "format": "{icon}{text}",
     "format-icons": {
       "idle": "󰊤",
       "active": "󰊤"

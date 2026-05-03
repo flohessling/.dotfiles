@@ -59,6 +59,15 @@ log "re-applying smudge filter to encrypted files"
 cd "$HOME"
 dot checkout HEAD -- .
 
+# ── nvim config: remove omarchy-nvim residue not tracked by dotfiles
+# omarchy-nvim drops LazyVim scaffolding (lua/config/, lua/plugins/*.lua,
+# lazy-lock.json, lazyvim.json) that conflicts with our vim.pack setup.
+# `dot clean -fd` removes anything under ~/.config/nvim not tracked by the
+# dotfiles repo — surgical, future-proof against new files omarchy-nvim
+# might drop. Bootstrap.sh later removes the package itself.
+log "cleaning omarchy-nvim residue from ~/.config/nvim"
+dot clean -fd -- .config/nvim
+
 # ── swap origin to ssh (now that ~/.ssh is decrypted)
 log "switching origin to SSH"
 dot remote set-url origin git@github.com:flohessling/.dotfiles.git
@@ -68,18 +77,23 @@ log "linking platform-specific git config"
 ln -sf "config-$(uname -s | tr '[:upper:]' '[:lower:]')" \
     "$HOME/.config/git/config-platform"
 
-# ── nvim: wipe all vim.pack plugins for a clean re-clone
-# vim.pack clones via https URLs that ~/.gitconfig rewrites to ssh, so any
-# clone attempted before ssh was set up will half-finish in subtle ways
-# (empty work-tree, missing .git objects, partial checkouts of `version =`
-# branches, etc.). Detecting every broken shape is fragile — just nuke the
-# opt/ dir. Next nvim launch re-clones everything fresh; cheap on a fresh
-# machine, mildly wasteful on re-runs.
-nvim_pack="$HOME/.local/share/nvim/site/pack/core/opt"
-if [[ -d $nvim_pack ]]; then
-    log "wiping all vim.pack plugins (will re-clone on next nvim launch)"
-    rm -rf "$nvim_pack"
-fi
+# ── nvim runtime state: wipe everything plugin-manager-related
+# - vim.pack opt: clones via https URLs that ~/.gitconfig rewrites to ssh,
+#   so any clone attempted before ssh was set up half-finishes in subtle
+#   ways (empty work-tree, missing objects, partial branch checkouts).
+#   Detecting every broken shape is fragile — just nuke and re-clone.
+# - lazy.nvim: omarchy ships a LazyVim default; we use vim.pack instead.
+# - site/parser + site/queries: nvim-treesitter creates parser binaries and
+#   query symlinks here. After plugin-manager swap (lazy → vim.pack), the
+#   query symlinks point at the old plugin path → highlighter attaches but
+#   produces zero captures → file looks unhighlighted while treesitter is
+#   technically running. Nuking forces install() to rebuild fresh.
+log "wiping nvim runtime state (vim.pack opt, lazy residue, parser/query symlinks)"
+rm -rf "$HOME/.local/share/nvim/site/pack/core/opt" \
+       "$HOME/.local/share/nvim/site/parser" \
+       "$HOME/.local/share/nvim/site/queries" \
+       "$HOME/.local/share/nvim/lazy" \
+       "$HOME/.local/share/nvim/lazyvim"
 
 # ── project dirs
 # Rename ~/Work (omarchy default) to ~/work for consistency.
@@ -91,12 +105,6 @@ if [[ -d "$HOME/Work" && ! -e "$HOME/work" ]]; then
     mv "$HOME/Work" "$HOME/work"
 fi
 mkdir -p "$HOME/personal"
-
-# lazy.nvim residue from Omarchy default — we use vim.pack instead
-if [[ -d "$HOME/.local/share/nvim/lazy" ]]; then
-    log "removing lazy.nvim residue (we use vim.pack)"
-    rm -rf "$HOME/.local/share/nvim/lazy" "$HOME/.local/share/nvim/lazyvim"
-fi
 
 # ── done
 log "first-run complete."

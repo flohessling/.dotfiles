@@ -28,7 +28,7 @@ trivy
 dockerfile-language-server
 gci
 hadolint-bin
-jsonlint
+nodejs-jsonlint
 marksman
 nixfmt
 sqlfmt

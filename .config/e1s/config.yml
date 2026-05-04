@@ -1,0 +1,23 @@
+# config.yml
+# e1s configuration — colors match the omarchy-patina-theme palette
+# (see ~/personal/repos/omarchy-patina-theme/colors.toml)
+
+# Log file path
+log-file: "/tmp/e1s.log"
+
+# Refresh rate in seconds (-1 disables auto-refresh)
+refresh: 5
+
+# Patina theme colors
+colors:
+  BgColor: "#0d0e10" # background
+  FgColor: "#E1E1E1" # foreground
+  BorderColor: "#A2B5C1" # accent
+  Black: "#0d0e10" # color0
+  Red: "#b46958" # color1
+  Green: "#8DAA9A" # color2
+  Yellow: "#F4BF75" # color3
+  Blue: "#80909F" # color4
+  Magenta: "#AA749F" # color5
+  Cyan: "#88AFA2" # color6
+  Gray: "#202020" # color8 — very dark, bump if dim text becomes unreadable

@@ -103,7 +103,7 @@ fi
 
 # dotfiles alias
 alias dot="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
-alias lazydot="lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+alias lgdot="lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
 # aliases
 alias -- awsp='awsume'

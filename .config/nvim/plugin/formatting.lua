@@ -7,7 +7,7 @@ require("conform").setup({
         quiet = false,
     },
     formatters_by_ft = {
-        go = { "gci", "golines" },
+        go = { "golangci-lint" },
         hcl = { "terragrunt_hclfmt" },
         json = { "jq" },
         lua = { "stylua" },
@@ -24,26 +24,6 @@ require("conform").setup({
     formatters = {
         shfmt = {
             prepend_args = { "-i", "2" },
-        },
-        gci = {
-            args = {
-                "write",
-                "--skip-generated",
-                "-s",
-                "Standard",
-                "-s",
-                "Default",
-                "-s",
-                "Prefix(github.com/shopware)",
-                "--skip-vendor",
-                "$FILENAME",
-            },
-        },
-        golines = {
-            prepend_args = {
-                "--base-formatter=gofumpt",
-                "--ignore-generated",
-            },
         },
     },
     format_on_save = function(bufnr)

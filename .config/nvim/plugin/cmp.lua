@@ -1,4 +1,4 @@
--- Advertise cmp capabilities to all LSP servers
+-- advertise cmp capabilities to all lsp servers
 vim.lsp.config("*", {
     capabilities = require("cmp_nvim_lsp").default_capabilities(),
 })

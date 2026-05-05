@@ -1,4 +1,4 @@
--- Highlight on yank
+-- highlight on yank
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
     callback = function()
@@ -8,16 +8,16 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     pattern = "*",
 })
 
--- Don't auto commenting new lines
+-- don't auto commenting new lines
 vim.api.nvim_create_autocmd("BufEnter", {
     pattern = "*",
     command = "set fo-=c fo-=r fo-=o",
 })
 
--- Check if reloading is necessary after file changes
+-- check if reloading is necessary after file changes
 vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, { command = "checktime" })
 
--- Close some filetypes with <q>
+-- close some filetypes with <q>
 vim.api.nvim_create_autocmd({ "FileType" }, {
     pattern = {
         "qf",
@@ -39,7 +39,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     end,
 })
 
--- Toggle format-on-save
+-- toggle format-on-save
 vim.api.nvim_create_user_command("FormatDisable", function(args)
     if args.bang then
         vim.b.disable_autoformat = true

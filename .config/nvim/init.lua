@@ -1,8 +1,8 @@
--- [[ Leader ]]
+-- leader
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- [[ Options ]]
+-- opts
 vim.opt.hlsearch = true
 vim.opt.number = true
 vim.opt.mouse = "a"
@@ -40,10 +40,10 @@ vim.opt.listchars = { tab = "  " }
 vim.opt.splitkeep = "cursor"
 vim.o.shortmess = "filnxtToOFWIcC"
 
--- Native floating window borders (replaces dressing.nvim + hover border hacks)
+-- native floating window borders (replaces dressing.nvim + hover border hacks)
 vim.o.winborder = "rounded"
 
--- [[ Diagnostics ]]
+-- diagnostics
 local icons = {
     Error = " ",
     Warn = " ",
@@ -76,13 +76,12 @@ vim.diagnostic.config({
     },
 })
 
--- [[ Plugins ]]
+-- plugins
 vim.pack.add({
     -- Colorscheme & UI
     { src = "https://github.com/flohessling/no-clown-fiesta.nvim" },
     { src = "https://github.com/nvim-lualine/lualine.nvim" },
     { src = "https://github.com/folke/snacks.nvim" },
-    { src = "https://github.com/zbirenbaum/copilot.lua" },
 
     -- Treesitter
     { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
@@ -98,6 +97,7 @@ vim.pack.add({
     { src = "https://github.com/hrsh7th/cmp-nvim-lsp" },
     { src = "https://github.com/hrsh7th/cmp-buffer" },
     { src = "https://github.com/hrsh7th/cmp-cmdline" },
+    { src = "https://github.com/zbirenbaum/copilot.lua" },
     { src = "https://codeberg.org/FelipeLema/cmp-async-path" },
 
     -- Formatting & Linting
@@ -125,16 +125,17 @@ vim.pack.add({
     { src = "https://github.com/lewis6991/gitsigns.nvim" },
 }, { load = true })
 
--- [[ Colorscheme ]]
+-- colorscheme
 require("no-clown-fiesta").setup({
+    theme = "dark",
     transparent = true,
 })
 vim.cmd("colorscheme no-clown-fiesta")
 
--- [[ Lualine ]]
+-- lualine
 require("lualine").setup({
     options = {
-        theme = "auto",
+        theme = "no-clown-fiesta",
         global_status = true,
         component_separators = "|",
     },
@@ -143,7 +144,7 @@ require("lualine").setup({
     },
 })
 
--- [[ Copilot ]]
+-- copilot
 require("copilot").setup({
     panel = { enabled = false },
     suggestion = {

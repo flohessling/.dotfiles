@@ -1,4 +1,4 @@
--- Harpoon
+-- harpoon
 local harpoon = require("harpoon")
 harpoon:setup()
 
@@ -18,7 +18,7 @@ vim.g.gitblame_enabled = 0
 vim.keymap.set("n", "<leader>gb", ":GitBlameToggle<CR>", { desc = "Git blame" })
 vim.keymap.set("n", "<leader>gbo", ":GitBlameOpenCommitURL<CR>", { desc = "Git blame open commit URL" })
 
--- Undotree
+-- undotree
 vim.keymap.set("n", "<leader>u", "<cmd>UndotreeToggle<cr>", { desc = "Toggle undo tree" })
 
 -- visual-whitespace

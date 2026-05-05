@@ -1,5 +1,5 @@
--- Enable LSP servers
--- Each server needs a matching config in lsp/<name>.lua
+-- enable lsp servers
+-- each server needs a matching config in lsp/<name>.lua
 vim.lsp.enable({
     "gopls",
     "intelephense",
@@ -9,7 +9,7 @@ vim.lsp.enable({
     "yaml_ls",
 })
 
--- LSP Keymaps
+-- lsp keymaps
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
         local bufnr = args.buf
@@ -44,7 +44,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     end,
 })
 
--- Go: organize imports on save
+-- go: organize imports on save
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*.go",
     callback = function()

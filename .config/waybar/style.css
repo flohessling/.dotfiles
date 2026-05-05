@@ -74,10 +74,16 @@ window#waybar {
 /* } */
 
 tooltip {
-  background-color: alpha(@background, 0.5);
+  background-color: alpha(@background, 0.8);
   border: 1px solid alpha(@foreground, 0.15);
   border-radius: 6px;
   padding: 6px 10px;
+}
+
+menu {
+  background-color: alpha(@background, 0.8);
+  border: 1px solid alpha(@foreground, 0.15);
+  border-radius: 6px;
 }
 
 tooltip label {

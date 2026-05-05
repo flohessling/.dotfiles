@@ -152,5 +152,9 @@ require("copilot").setup({
             accept = "<C-y>",
         },
     },
-    filetypes = {},
+    filetypes = {
+        ["rip-substitute"] = false,
+        ["yaml"] = true,
+        ["terraform"] = true,
+    },
 })

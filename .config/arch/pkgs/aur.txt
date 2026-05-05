@@ -4,6 +4,7 @@
 
 # --- desktop apps (Brewfile cask -> AUR equivalents) ---
 1password-cli
+elephant-1password
 aws-session-manager-plugin
 librepods
 postman-bin

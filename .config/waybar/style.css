@@ -91,6 +91,10 @@ tooltip label {
   background-color: transparent;
 }
 
+#custom-omarchy {
+  font-size: 14px;
+}
+
 #custom-update {
   font-size: 10px;
 }

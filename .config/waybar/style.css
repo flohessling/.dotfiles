@@ -92,7 +92,7 @@ tooltip label {
 }
 
 #custom-omarchy {
-  font-size: 14px;
+  font-size: 12px;
 }
 
 #custom-update {
@@ -138,4 +138,15 @@ tooltip label {
 
 #custom-github-notify.active {
   color: #5fa55f;
+}
+
+#custom-weather {
+  margin-left: 7.5px;
+  margin-right: 7.5px;
+}
+
+#custom-weather.unavailable {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
 }

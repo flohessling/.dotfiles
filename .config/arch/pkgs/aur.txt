@@ -2,27 +2,25 @@
 # Strip comments before piping, e.g.:
 #   grep -vE '^\s*(#|$)' aur.txt | paru -S --needed --noconfirm -
 
-# --- desktop apps (Brewfile cask -> AUR equivalents) ---
 1password-cli
-elephant-1password
-aws-session-manager-plugin
-librepods
-postman-bin
-tidal-hifi
-zen-browser-bin
-
-# --- CLI tools not in official repos ---
 act
 dblab
 e1s
+elephant-1password
+aws-session-manager-plugin
 lazysql
+librepods
 natscli
 opencode-bin
 phpstan
+postman-bin
 ratchet
+tailscale
 temporal-cli
 terragrunt
+tidal-hifi
 trivy
+zen-browser-bin
 
 # --- LSPs / formatters / linters not in official repos ---
 dockerfile-language-server

@@ -4,6 +4,7 @@
 
 1password-cli
 act
+bind
 dblab
 e1s
 elephant-1password

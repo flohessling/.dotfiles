@@ -155,6 +155,18 @@ rdstunnel() {
     if [ $? -eq 0 ] && [ -n "$db_token" ]; then
         echo "✓ IAM token generated successfully, expires after 15 minutes!"
         echo "Connect using: mysql -h 127.0.0.1 -P $db_port -u engineer --enable-cleartext-plugin --password='$db_token'"
+
+        # Write lazysql config with URL-encoded token
+        local encoded_token
+        encoded_token=$(printf '%s' "$db_token" | jq -sRr @uri)
+        mkdir -p "$HOME/.config/lazysql"
+        cat >"$HOME/.config/lazysql/config.toml" <<EOF
+[[database]]
+Name = "localhost@rdstunnel"
+Provider = "mysql"
+URL = "mysql://engineer:$encoded_token@127.0.0.1:$db_port/?allowCleartextPasswords=true&tls=skip-verify"
+EOF
+        echo "✓ Wrote lazysql config — run 'lazysql' in another terminal"
     else
         echo "⚠ Failed to generate IAM token - you may need to use traditional authentication"
     fi

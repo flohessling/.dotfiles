@@ -16,6 +16,7 @@ opencode-bin
 phpstan
 postman-bin
 ratchet
+sops
 tailscale
 temporal-cli
 terragrunt

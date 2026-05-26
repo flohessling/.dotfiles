@@ -37,6 +37,7 @@ terraform-ls
 tflint
 vscode-langservers-extracted
 vtsls
+yamlfmt
 
 # --- temporarily disabled (AUR build chain issues; revisit periodically) ---
 # php-cs-fixer  — exit 8, php-box make-dep issues; install via Mason in nvim or composer per-project

@@ -20,10 +20,14 @@ require("conform").setup({
         terraform = { "terraform_fmt" },
         tf = { "terraform_fmt" },
         ["terraform-vars"] = { "terraform_fmt" },
+        yaml = { "yamlfmt" },
     },
     formatters = {
         shfmt = {
             prepend_args = { "-i", "2" },
+        },
+        yamlfmt = {
+            prepend_args = { "-formatter", "retain_line_breaks=true" },
         },
     },
     format_on_save = function(bufnr)

@@ -91,3 +91,6 @@ yamllint
 # --- Browser ---
 # Stays here only as a fallback; primary browser (zen) is installed from AUR.
 chromium
+
+# --- Dell Firmware Update Utility (FWUPD) ---
+fwupd

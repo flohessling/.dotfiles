@@ -5,7 +5,7 @@ formatters:
     - gci
     - gofumpt
     - goimports
-    - golines
+    # - golines
   settings:
     golines:
       max-len: 0

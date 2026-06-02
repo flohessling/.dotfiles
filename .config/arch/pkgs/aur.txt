@@ -13,7 +13,7 @@ lazysql
 librepods
 natscli
 opencode-bin
-phpstan
+phpstan-bin
 postman-bin
 ratchet
 sops
@@ -31,6 +31,7 @@ hadolint-bin
 nodejs-jsonlint
 marksman
 nixfmt
+nodejs-intelephense
 sqlfmt
 stylua
 terraform-ls

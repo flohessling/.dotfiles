@@ -52,10 +52,8 @@ pnpm
 obsidian
 
 # --- PHP ---
-# NOTE: Arch ships only current PHP. The Brewfile pinned 8.3 via shivammathur (mac-only tap).
-# If you need 8.3 specifically, install via AUR (php83) or run PHP work in a container.
-# php
-# composer
+php
+composer
 
 # --- cloud / infra ---
 aws-cli-v2

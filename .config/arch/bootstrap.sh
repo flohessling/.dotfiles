@@ -42,6 +42,16 @@ strip_comments "$PKG_DIR/pacman.txt" | xargs -r sudo pacman -S --needed --noconf
 log "installing AUR packages"
 strip_comments "$PKG_DIR/aur.txt" | xargs -r yay -S --needed --noconfirm
 
+# ── enable supervised user services
+# librepods occasionally SIGSEGVs on AirPods disconnect; running it under
+# systemd with Restart=always means it self-heals instead of needing a
+# manual kill/restart. Unit file is tracked in dotfiles at
+# ~/.config/systemd/user/librepods.service. daemon-reload picks up edits on
+# re-run; enable --now is idempotent.
+log "enabling librepods user service"
+systemctl --user daemon-reload
+systemctl --user enable --now librepods.service
+
 # ── default terminal: ghostty
 # omarchy-install-terminal installs the package, copies the .desktop file,
 # and rewrites ~/.config/xdg-terminals.list so xdg-terminal-exec picks it.

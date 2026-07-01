@@ -41,6 +41,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
             vim.lsp.buf.format()
         end, { desc = "Format current buffer with LSP" })
+
+        -- disable semantic tokens for terraform_ls
+        local id = vim.tbl_get(args, "data", "client_id")
+        local client = id and vim.lsp.get_client_by_id(id)
+        if client and client.name == "terraform_ls" then
+            client.server_capabilities.semanticTokensProvider = nil
+        end
     end,
 })
 

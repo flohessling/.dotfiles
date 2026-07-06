@@ -29,6 +29,9 @@ unzip
 wget
 zip
 
+# --- system utils ---
+kanshi
+
 # --- editor & fonts ---
 neovim
 ttf-hack-nerd

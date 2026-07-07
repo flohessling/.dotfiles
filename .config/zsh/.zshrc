@@ -1,8 +1,3 @@
-# init shell with brew (darwin only — linux uses pacman/yay)
-if [[ $(uname) == "Darwin" ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-fi
-
 # oh-my-zsh config
 export ZSH="$ZDOTDIR/ohmyzsh"
 plugins=(git docker docker-compose aws fzf)
@@ -22,15 +17,9 @@ bindkey -e
 
 # load plugins
 autoload -U compinit && compinit
-if [[ $(uname) == "Darwin" ]]; then
-    source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-    source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    source $HOMEBREW_PREFIX/share/zsh-history-substring-search/zsh-history-substring-search.zsh
-else
-    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-fi
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 # Make '#' comments and autosuggestion ghost text readable (default is fg=black,bold — invisible on dark bg)
 ZSH_HIGHLIGHT_STYLES[comment]='fg=245'
@@ -82,7 +71,6 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export TF_PLUGIN_CACHE_DIR="$XDG_CACHE_HOME/terraform"
 export TF_CLI_CONFIG_FILE="$XDG_CONFIG_HOME/terraform/config.tfrc"
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
-export HOMEBREW_BUNDLE_FILE="$XDG_CONFIG_HOME/brewfile/Brewfile"
 
 # configure go
 export GOPATH="$HOME/go"
@@ -95,15 +83,9 @@ export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:/usr/local/bin"
 export PATH="$PATH:$GOPATH/bin"
 export PATH="$PATH:$HOME/.local/bin"
-if [[ $(uname) == "Darwin" ]]; then
-    export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
-    export PATH="$PATH:/opt/homebrew/opt/mysql-client/bin"
-fi
 
-# linux-only env
-if [[ $(uname) == "Linux" ]]; then
-    export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
-fi
+# 1password ssh agent
+export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
 
 # dotfiles alias
 alias dot="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
@@ -127,13 +109,8 @@ alias -- wgdown-staging='sudo wg-quick down staging'
 alias -- wgup-prod='sudo wg-quick up prod'
 alias -- wgup-staging='sudo wg-quick up staging'
 
-# platform-specific aliases
-if [[ $(uname) == "Darwin" ]]; then
-    alias -- tailscale=/Applications/Tailscale.app/Contents/MacOS/Tailscale
-else
-    # mac muscle memory on linux
-    alias -- open='xdg-open'
-fi
+# mac muscle memory
+alias -- open='xdg-open'
 
 # custom scripts
 for f in $XDG_CONFIG_HOME/zsh/scripts.d/*; do source $f; done

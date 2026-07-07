@@ -1,9 +1,8 @@
 # .dotfiles
 
-Personal dotfiles. Bare-git workflow, single `main` branch with platform conditionals.
+Personal dotfiles for Omarchy / Arch Linux. Bare-git workflow on a single `main` branch.
 
-- **macOS**: `brew bundle` against the included Brewfile.
-- **Linux (Omarchy / Arch)**: `first-run.sh` then `bootstrap.sh`.
+Bootstrap: `first-run.sh` then `bootstrap.sh` (see below).
 
 Secrets (`~/.ssh/`, `~/.aws/`, etc.) are encrypted with [git-crypt]. The unlock key lives in 1Password as a Document named `dotfiles`.
 
@@ -37,7 +36,7 @@ dot config --local status.showUntrackedFiles no
 dot checkout -f main
 ```
 
-### 3a. Bootstrap on Linux (Omarchy)
+### 3. Bootstrap
 
 ```
 # unlock secrets, install git-crypt, swap remote to ssh, clean nvim residue
@@ -48,28 +47,6 @@ nvim +qa
 
 # install pacman + aur packages, service toggles, etc.
 bash $HOME/.config/arch/bootstrap.sh
-
-exec zsh
-```
-
-### 3b. Bootstrap on macOS
-
-```
-# install homebrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
-# install git-crypt and unlock secrets
-brew install git-crypt
-op document get dotfiles --force | dot crypt unlock -
-dot checkout HEAD -- .
-dot remote set-url origin git@github.com:flohessling/.dotfiles.git
-
-# point platform-conditional git config at the darwin variant
-ln -sf config-darwin $HOME/.config/git/config-platform
-
-# install everything from the brewfile
-brew bundle --file $HOME/.config/brewfile/Brewfile
 
 exec zsh
 ```

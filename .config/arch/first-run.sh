@@ -72,11 +72,6 @@ dot clean -fd -- .config/nvim
 log "switching origin to SSH"
 dot remote set-url origin git@github.com:flohessling/.dotfiles.git
 
-# ── platform-conditional git config (gpg/op-ssh-sign paths)
-log "linking platform-specific git config"
-ln -sf "config-$(uname -s | tr '[:upper:]' '[:lower:]')" \
-    "$HOME/.config/git/config-platform"
-
 # ── nvim runtime state: wipe everything plugin-manager-related
 # - vim.pack opt: clones via https URLs that ~/.gitconfig rewrites to ssh,
 #   so any clone attempted before ssh was set up half-finishes in subtle

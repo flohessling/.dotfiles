@@ -11,12 +11,11 @@
 
 [gpg]
 	format = "ssh"
+	program = "/usr/bin/gpg"
 
 [gpg "ssh"]
 	allowedSignersFile = "~/.ssh/allowed_signers"
-
-[include]
-	path = ~/.config/git/config-platform
+	program = "/opt/1Password/op-ssh-sign"
 
 [init]
 	defaultBranch = "main"

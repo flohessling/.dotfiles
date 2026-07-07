@@ -32,6 +32,10 @@ else
     source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 fi
 
+# Make '#' comments and autosuggestion ghost text readable (default is fg=black,bold — invisible on dark bg)
+ZSH_HIGHLIGHT_STYLES[comment]='fg=245'
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=240'
+
 # history options
 HISTSIZE="10000"
 SAVEHIST="10000"

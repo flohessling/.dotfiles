@@ -1,0 +1,24 @@
+# kanshi dynamic display configuration
+# outputs are matched by "manufacturer model serial" (from `hyprctl monitors`),
+
+# --- campus office: 2x Dell 27" via dock + laptop far right ---
+profile office {
+	output "Dell Inc. DELL S2721QSA BJTJZY3" mode 3840x2160@60Hz position 0,0 scale 1.5
+	output "Dell Inc. DELL S2721QSA H8TJZY3" mode 3840x2160@60Hz position 2560,0 scale 1.5
+	output eDP-1 mode 2880x1800@120Hz position 5120,0 scale 1.5
+	exec omarchy restart waybar
+}
+
+# --- home office: laptop far left, ASUS middle, LG right ---
+profile home {
+	output eDP-1 mode 2880x1800@120Hz position 0,0 scale 1.5
+	output "ASUSTek COMPUTER INC PG27UCDM TALMAS009059" mode 3840x2160@97Hz position 1920,0 scale 1.5
+	output "LG Electronics LG ULTRAGEAR 309MASXDZ118" mode 2560x1440@99.95Hz position 4480,0 scale 1
+	exec omarchy restart waybar
+}
+
+# --- fallback: laptop only (undocked) ---
+profile laptop {
+	output eDP-1 mode 2880x1800@120Hz position 0,0 scale 1.5
+	exec omarchy restart waybar
+}

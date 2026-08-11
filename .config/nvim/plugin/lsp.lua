@@ -1,5 +1,5 @@
--- Enable LSP servers
--- Each server needs a matching config in lsp/<name>.lua
+-- enable lsp servers
+-- each server needs a matching config in lsp/<name>.lua
 vim.lsp.enable({
     "gopls",
     "intelephense",
@@ -9,7 +9,7 @@ vim.lsp.enable({
     "yaml_ls",
 })
 
--- LSP Keymaps
+-- lsp keymaps
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
         local bufnr = args.buf
@@ -41,10 +41,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
             vim.lsp.buf.format()
         end, { desc = "Format current buffer with LSP" })
+
+        -- disable semantic tokens for terraform_ls
+        local id = vim.tbl_get(args, "data", "client_id")
+        local client = id and vim.lsp.get_client_by_id(id)
+        if client and client.name == "terraform_ls" then
+            client.server_capabilities.semanticTokensProvider = nil
+        end
     end,
 })
 
--- Go: organize imports on save
+-- go: organize imports on save
 vim.api.nvim_create_autocmd("BufWritePre", {
     pattern = "*.go",
     callback = function()

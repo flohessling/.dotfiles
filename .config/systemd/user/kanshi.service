@@ -1,0 +1,14 @@
+[Unit]
+Description=kanshi dynamic display configuration
+Documentation=man:kanshi(1)
+PartOf=graphical-session.target
+After=graphical-session.target
+Requisite=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/kanshi
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target

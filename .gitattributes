@@ -1,0 +1,7 @@
+/.aws/config filter=git-crypt diff=git-crypt
+/.aws/credentials filter=git-crypt diff=git-crypt
+/.aws/no-sso-config filter=git-crypt diff=git-crypt
+/.config/wireguard/*.gpg filter=git-crypt diff=git-crypt
+/.config/zsh/scripts.private.d/** filter=git-crypt diff=git-crypt
+/.ssh/config filter=git-crypt diff=git-crypt
+/.ssh/cloud filter=git-crypt diff=git-crypt

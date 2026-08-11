@@ -6,7 +6,7 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
--- Module setup
+-- module setup
 require("mini.icons").setup()
 require("mini.bracketed").setup()
 require("mini.surround").setup()
@@ -91,7 +91,7 @@ vim.api.nvim_create_autocmd("user", {
     end,
 })
 
--- Keymaps
+-- keymaps
 -- stylua: ignore start
 vim.keymap.set("n", "<leader>e", function()
     if not MiniFiles.close() then MiniFiles.open(vim.api.nvim_buf_get_name(0)) end

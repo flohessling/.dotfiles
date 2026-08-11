@@ -17,7 +17,7 @@ return {
         redhat = { telemetry = { enabled = false } },
         yaml = {
             keyOrdering = false,
-            format = { enable = true },
+            format = { enable = false },
             validate = true,
             schemaStore = {
                 -- must disable built-in schema store support to use

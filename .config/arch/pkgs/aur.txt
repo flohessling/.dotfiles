@@ -1,0 +1,45 @@
+# AUR packages (paru/yay).
+# Strip comments before piping, e.g.:
+#   grep -vE '^\s*(#|$)' aur.txt | paru -S --needed --noconfirm -
+
+1password-cli
+act
+bind
+dblab
+e1s
+elephant-1password
+aws-session-manager-plugin
+lazysql
+librepods
+natscli
+opencode-bin
+phpstan-bin
+postman-bin
+ratchet
+sops
+tailscale
+temporal-cli
+terragrunt
+tidal-hifi
+trivy
+zen-browser-bin
+
+# --- LSPs / formatters / linters not in official repos ---
+dockerfile-language-server
+gci
+hadolint-bin
+nodejs-jsonlint
+marksman
+nixfmt
+nodejs-intelephense
+sqlfmt
+stylua
+terraform-ls
+tflint
+vscode-langservers-extracted
+vtsls
+yamlfmt
+
+# --- temporarily disabled (AUR build chain issues; revisit periodically) ---
+# php-cs-fixer  — exit 8, php-box make-dep issues; install via Mason in nvim or composer per-project
+# yamlfix       — exit 4, blocked by pydantic-core/pyo3 lag behind Python 3.14; install via Mason in nvim or pipx until pydantic-core ships pyo3 0.25+

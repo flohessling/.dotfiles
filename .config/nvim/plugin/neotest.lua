@@ -1,4 +1,4 @@
--- Neotest diagnostic formatting (compact inline messages)
+-- neotest diagnostic formatting (compact inline messages)
 local neotest_ns = vim.api.nvim_create_namespace("neotest")
 vim.diagnostic.config({
     virtual_text = {

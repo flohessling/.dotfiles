@@ -7,7 +7,7 @@ require("conform").setup({
         quiet = false,
     },
     formatters_by_ft = {
-        go = { "gci", "golines" },
+        go = { "golangci-lint" },
         hcl = { "terragrunt_hclfmt" },
         json = { "jq" },
         lua = { "stylua" },
@@ -20,30 +20,14 @@ require("conform").setup({
         terraform = { "terraform_fmt" },
         tf = { "terraform_fmt" },
         ["terraform-vars"] = { "terraform_fmt" },
+        yaml = { "yamlfmt" },
     },
     formatters = {
         shfmt = {
             prepend_args = { "-i", "2" },
         },
-        gci = {
-            args = {
-                "write",
-                "--skip-generated",
-                "-s",
-                "Standard",
-                "-s",
-                "Default",
-                "-s",
-                "Prefix(github.com/shopware)",
-                "--skip-vendor",
-                "$FILENAME",
-            },
-        },
-        golines = {
-            prepend_args = {
-                "--base-formatter=gofumpt",
-                "--ignore-generated",
-            },
+        yamlfmt = {
+            prepend_args = { "-formatter", "retain_line_breaks=true" },
         },
     },
     format_on_save = function(bufnr)
@@ -58,7 +42,7 @@ require("conform").setup({
     end,
 })
 
--- Keymaps
+-- keymaps
 vim.keymap.set({ "n", "v" }, "<leader>F", function()
     require("conform").format()
 end, { desc = "Format buffer" })

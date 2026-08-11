@@ -132,14 +132,14 @@ rdstunnel() {
     local bastion_id db_selection db_host db_port
 
     # query ec2 instance id for bastion
-    bastion_id=$(aws ec2 describe-instances --region $region --filters "Name=tag:Name,Values=Bastion" --query "Reservations[*].Instances[*].InstanceId" --output text)
+    bastion_id=$(aws ec2 describe-instances --region $region --filters "Name=tag:Name,Values=Bastion" "Name=instance-state-name,Values=running" --query "Reservations[*].Instances[*].InstanceId" --output text)
     if [ -z "$bastion_id" ]; then
         echo "no bastion ec2 instance found..."
         return 1
     fi
 
     # query db instances and select using fzf
-    db_selection=$(aws rds describe-db-instances --region $region --query "DBInstances[*].[DBInstanceIdentifier, Endpoint.Address, Endpoint.Port]" --output text | column -t | fzf --ansi -1 -q "$*")
+    db_selection=$(aws rds describe-db-instances --region $region --query "DBInstances[?DBInstanceStatus=='available'].[DBInstanceIdentifier, Endpoint.Address, Endpoint.Port]" --output text | column -t | fzf --ansi -1 -q "$*")
     if [ -z "$db_selection" ]; then
         echo "no database instance found..."
         return 1
@@ -155,6 +155,18 @@ rdstunnel() {
     if [ $? -eq 0 ] && [ -n "$db_token" ]; then
         echo "✓ IAM token generated successfully, expires after 15 minutes!"
         echo "Connect using: mysql -h 127.0.0.1 -P $db_port -u engineer --enable-cleartext-plugin --password='$db_token'"
+
+        # Write lazysql config with URL-encoded token
+        local encoded_token
+        encoded_token=$(printf '%s' "$db_token" | jq -sRr @uri)
+        mkdir -p "$HOME/.config/lazysql"
+        cat >"$HOME/.config/lazysql/config.toml" <<EOF
+[[database]]
+Name = "localhost@rdstunnel"
+Provider = "mysql"
+URL = "mysql://engineer:$encoded_token@127.0.0.1:$db_port/?allowCleartextPasswords=true&tls=skip-verify"
+EOF
+        echo "✓ Wrote lazysql config — run 'lazysql' in another terminal"
     else
         echo "⚠ Failed to generate IAM token - you may need to use traditional authentication"
     fi

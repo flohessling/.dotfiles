@@ -1,10 +1,3 @@
-# init shell with brew
-if [[ $(uname) == "Darwin" ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-else
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-fi
-
 # oh-my-zsh config
 export ZSH="$ZDOTDIR/ohmyzsh"
 plugins=(git docker docker-compose aws fzf)
@@ -24,9 +17,13 @@ bindkey -e
 
 # load plugins
 autoload -U compinit && compinit
-source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $HOMEBREW_PREFIX/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+# Make '#' comments and autosuggestion ghost text readable (default is fg=black,bold — invisible on dark bg)
+ZSH_HIGHLIGHT_STYLES[comment]='fg=245'
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=240'
 
 # history options
 HISTSIZE="10000"
@@ -74,7 +71,6 @@ export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export TF_PLUGIN_CACHE_DIR="$XDG_CACHE_HOME/terraform"
 export TF_CLI_CONFIG_FILE="$XDG_CONFIG_HOME/terraform/config.tfrc"
 export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/ripgrep/config"
-export HOMEBREW_BUNDLE_FILE="$XDG_CONFIG_HOME/brewfile/Brewfile"
 
 # configure go
 export GOPATH="$HOME/go"
@@ -87,23 +83,24 @@ export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:/usr/local/bin"
 export PATH="$PATH:$GOPATH/bin"
 export PATH="$PATH:$HOME/.local/bin"
-export PATH="$PATH:/Applications/WezTerm.app/Contents/MacOS"
-export PATH="$PATH:/opt/homebrew/opt/mysql-client/bin"
+
+# 1password ssh agent
+export SSH_AUTH_SOCK="$HOME/.1password/agent.sock"
 
 # dotfiles alias
 alias dot="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+alias lgdot="lazygit --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
 # aliases
 alias -- awsp='awsume'
-alias -- bcat='bat --theme "base16"'
-alias -- cat='bat -pp --theme "base16"'
+alias -- bcat='bat'
+alias -- cat='bat -pp'
 alias -- lg=lazygit
 alias -- tf=terraform
 alias -- tg=terragrunt
 alias -- notes='cd ~/notes && v home.md'
 alias -- sso='aws sso login --sso-session root'
 alias -- t='tmux new -As0'
-alias -- tailscale=/Applications/Tailscale.app/Contents/MacOS/Tailscale
 alias -- v=nvim
 alias -- vi=nvim
 alias -- vim=nvim
@@ -111,6 +108,9 @@ alias -- wgdown-prod='sudo wg-quick down prod'
 alias -- wgdown-staging='sudo wg-quick down staging'
 alias -- wgup-prod='sudo wg-quick up prod'
 alias -- wgup-staging='sudo wg-quick up staging'
+
+# mac muscle memory
+alias -- open='xdg-open'
 
 # custom scripts
 for f in $XDG_CONFIG_HOME/zsh/scripts.d/*; do source $f; done

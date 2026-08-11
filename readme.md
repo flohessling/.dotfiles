@@ -1,55 +1,61 @@
 # .dotfiles
 
-This repository contains my `.dotfiles` configuration to setup or restore my mac environment.
+Personal dotfiles for Omarchy / Arch Linux. Bare-git workflow on a single `main` branch.
 
-It is making use of `git` and `homebrew`. Not much else should be needed.
+Bootstrap: `first-run.sh` then `bootstrap.sh` (see below).
+
+Secrets (`~/.ssh/`, `~/.aws/`, etc.) are encrypted with [git-crypt]. The unlock key lives in 1Password as a Document named `dotfiles`.
+
+[git-crypt]: https://github.com/AGWA/git-crypt
 
 ## Setup
 
-To start with this configuration we need to clone this repository first using `git clone --bare`.
+### 1. 1Password (manual, one-time)
 
-### Install oh-my-zsh
-```
-/bin/sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-```
+Sign into the 1Password desktop app, then **Settings → Developer**:
 
-### Cloning the repository
+- [x] Integrate with 1Password CLI
+- [x] Use the SSH agent
 
-Using the `--bare` option when cloning this repository makes it possible to have all files from this repository tracked in `$HOME` and not needing to symlink anything.
+Verify:
 
 ```
-git clone --bare git@github.com:flohessling/.dotfiles.git $HOME/.dotfiles
+op whoami
+```
 
-alias dot='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-dot checkout
+### 2. Clone via HTTPS
+
+`~/.ssh/config` is itself encrypted, so SSH won't authenticate at clone time. Clone over HTTPS — `first-run.sh` swaps the remote to SSH after decryption.
+
+```
+git clone --bare https://github.com/flohessling/.dotfiles.git $HOME/.dotfiles
+
+alias dot='git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+
 dot config --local status.showUntrackedFiles no
+dot checkout -f main
 ```
 
-The config option hides all untracked files in `$HOME` and makes `dot status` actually usable.
-
-### Install homebrew and packages
+### 3. Bootstrap
 
 ```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# unlock secrets, install git-crypt, swap remote to ssh, clean nvim residue
+bash $HOME/.config/arch/first-run.sh
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
-# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" # for linux
+# clone vim.pack plugins (~30 repos, takes a minute)
+nvim +qa
 
-brew bundle --file .config/brewfile/Brewfile
+# install pacman + aur packages, service toggles, etc.
+bash $HOME/.config/arch/bootstrap.sh
+
+exec zsh
 ```
 
-### Decrypt secrets
-
-The secrets are en- / decrypted using the unlock key (which is required for this action to work, obviously)
+### 4. Verify
 
 ```
-# 1password
-op document get dotfiles --force | dot crypt unlock -
-
-# key file
-dot crypt unlock dotfiles.key
+file ~/.ssh/config        # should be 'ASCII text' (decrypted)
+ssh-add -L                # should list 1Password keys
+ssh -T git@github.com     # should auth via 1Password SSH agent
+dot status                # should be clean
 ```
-
-### Restart shell (zsh)
-
-After setting everything up following the steps above the shell has to be restarted and should be ready afterwards.

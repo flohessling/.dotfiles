@@ -67,9 +67,14 @@ hl.config({
 -- sized (one per display), not notification-sized, so blurring it unconditionally
 -- frosts the entire screen whenever a notification appears. 0.3 sits below the
 -- card's 0.663 but above the transparent surround, so only the card blurs.
+-- blur_popups is needed as well as blur: bar tooltips are xdg popup children of
+-- the omarchy-bar layer surface (Bar.qml uses PopupWindow) rather than a layer
+-- of their own, so the plain blur rule never reaches them. The theme's
+-- shell.tooltip.toml supplies the matching translucency.
 hl.layer_rule({
   match = { namespace = "^(omarchy-bar|omarchy-notifications)$" },
   blur = true,
+  blur_popups = true,
   ignore_alpha = 0.3,
 })
 

@@ -42,7 +42,7 @@ keybind = super+shift+down=resize_split:down,10
 keybind = shift+enter=text:\x1b\r
 
 # Omarchy theme color
-config-file = ~/.config/omarchy/current/theme/ghostty.conf
+config-file = ~/.local/state/omarchy/current/theme/ghostty.conf
 
 # # Colors (no-clown-fiesta variant, aligned with nvim palette; OLED-darker bg)
 # foreground = E1E1E1
@@ -70,3 +70,6 @@ config-file = ~/.config/omarchy/current/theme/ghostty.conf
 # palette = 14=#88AFA2
 # palette = 15=#E1E1E1
 #
+
+# Legacy encoding sends Alt+Shift+Enter the same as Alt+Enter; send CSI-u so tmux can match M-S-Enter.
+keybind = alt+shift+enter=csi:13;4u

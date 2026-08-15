@@ -1,0 +1,4 @@
+[tools]
+claude = "latest"
+node = "25.9.0"
+e1s = "latest"

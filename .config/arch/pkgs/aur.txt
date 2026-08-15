@@ -6,7 +6,6 @@
 act
 bind
 dblab
-e1s
 elephant-1password
 aws-session-manager-plugin
 lazysql

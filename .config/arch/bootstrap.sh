@@ -42,6 +42,16 @@ strip_comments "$PKG_DIR/pacman.txt" | xargs -r sudo pacman -S --needed --noconf
 log "installing AUR packages"
 strip_comments "$PKG_DIR/aur.txt" | xargs -r yay -S --needed --noconfirm
 
+# ── install mise-managed tools
+# Declared in ~/.config/mise/config.toml; `mise install` with no args installs
+# everything in the config. Omarchy puts ~/.local/share/mise/shims on PATH
+# session-wide (uwsm env.d), and shims are only generated on install — so
+# without this step a declared tool is simply not on PATH.
+# MISE_MINIMUM_RELEASE_AGE=0 matches what omarchy-update-mise does: mise
+# otherwise withholds releases younger than its cooldown.
+log "installing mise tools"
+MISE_MINIMUM_RELEASE_AGE=0 mise install
+
 # ── default terminal: ghostty
 # omarchy-install-terminal installs the package, copies the .desktop file,
 # and rewrites ~/.config/xdg-terminals.list so xdg-terminal-exec picks it.
@@ -85,21 +95,11 @@ fi
 # ── webapps: remove omarchy defaults i don't use
 # `|| true` so missing ones don't abort under set -e.
 log "removing unwanted default webapps"
-omarchy-webapp-remove \
-    "Basecamp" \
-    "ChatGPT" \
-    "Figma" \
-    "Fizzy" \
-    "GitHub" \
-    "Google Contacts" \
-    "Google Maps" \
-    "Google Messages" \
-    "Google Photos" \
-    "HEY" \
-    "X" \
-    "YouTube" \
-    "Zoom" ||
-    true
+for app in \
+    "Basecamp" "ChatGPT" "Figma" "GitHub" "Google Contacts" "Google Maps" "Google Messages" \
+    "Google Photos" "HEY" "X" "Zoom"; do
+    OMARCHY_REMOVE_NOTIFY=false omarchy-webapp-remove "$app" || true
+done
 
 # ── webapps: install the ones tied to my hypr keybinds
 # omarchy-webapp-install <Name> <URL> <Icon>

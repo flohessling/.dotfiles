@@ -44,12 +44,6 @@
           "id": "omarchy.agents"
         },
         {
-          "id": "omarchy.bluetooth"
-        },
-        {
-          "id": "omarchy.network"
-        },
-        {
           "id": "omarchy.microphone"
         },
         {
@@ -57,6 +51,15 @@
         },
         {
           "id": "omarchy.monitor"
+        },
+        {
+          "id": "omarchy.bluetooth"
+        },
+        {
+          "id": "omarchy.network"
+        },
+        {
+          "id": "flohessling.stats"
         },
         {
           "id": "omarchy.power"

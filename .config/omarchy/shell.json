@@ -28,12 +28,12 @@
         },
         {
           "id": "omarchy.workspaces"
-        },
-        {
-          "id": "omarchy.media"
         }
       ],
       "right": [
+        {
+          "id": "omarchy.media"
+        },
         {
           "id": "omarchy.tray"
         },

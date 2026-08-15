@@ -71,8 +71,16 @@ hl.config({
 -- the omarchy-bar layer surface (Bar.qml uses PopupWindow) rather than a layer
 -- of their own, so the plain blur rule never reaches them. The theme's
 -- shell.tooltip.toml supplies the matching translucency.
+--
+-- omarchy-keyboard-panel is the shared host for the bar widget panels (audio,
+-- bluetooth, network, display, power) and omarchy-osd is the volume/brightness
+-- OSD. Both are PanelWindows, not popups of the bar, so blur_popups does not
+-- reach them and they need naming here. Both draw a transparent window with an
+-- opaque card inside — exactly like omarchy-notifications — so ignore_alpha is
+-- what keeps the blur on the card instead of the whole screen. Their
+-- translucency comes from the theme's shell.popups.toml.
 hl.layer_rule({
-  match = { namespace = "^(omarchy-bar|omarchy-notifications)$" },
+  match = { namespace = "^(omarchy-bar|omarchy-notifications|omarchy-keyboard-panel|omarchy-osd)$" },
   blur = true,
   blur_popups = true,
   ignore_alpha = 0.3,

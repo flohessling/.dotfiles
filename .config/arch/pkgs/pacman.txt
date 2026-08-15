@@ -35,8 +35,10 @@ kanshi
 # --- editor & fonts ---
 neovim
 ttf-hack-nerd
-ttf-jetbrains-mono
-ttf-jetbrains-mono-nerd
+# Omarchy 4 (Quattro) replaced ttf-jetbrains-mono{,-nerd} with this reduced
+# glyph set; the two old packages conflict with it. Still provides the
+# "JetBrainsMono Nerd Font" family that foot/ghostty/waybar configs ask for.
+ttf-jetbrains-mono-nerd-basic
 
 # --- terminal ---
 ghostty

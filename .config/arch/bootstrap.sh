@@ -116,9 +116,21 @@ log "installing and activating patina theme for omarchy"
 omarchy-theme-install https://github.com/flohessling/omarchy-patina-theme.git
 omarchy-theme-set patina
 
+# ── omarchy shell plugins
+# Installed without --enable on purpose: the tracked ~/.config/omarchy/shell.json
+# already places the widget in bar.layout, so --enable risks a duplicate entry
+# depending on whether the dotfiles checkout happens before or after this runs.
+# Note the https URL is rewritten to ssh by ~/.config/git/config, so this needs
+# the 1Password SSH agent to be up — first-run.sh already gates on that.
+log "installing omarchy shell plugins"
+omarchy plugin add https://github.com/robzolkos/omarchy-github.git
+
 # ── wire gtk apps to active omarchy theme
+# Omarchy 4 (Quattro) moved theme state from ~/.config/omarchy/current to
+# ~/.local/state/omarchy/current. Relative to ~/.config/gtk-*, that is two
+# levels up to $HOME and then into .local/state.
 mkdir -p ~/.config/gtk-3.0 ~/.config/gtk-4.0
-ln -sf ../omarchy/current/theme/gtk.css ~/.config/gtk-3.0/gtk.css
-ln -sf ../omarchy/current/theme/gtk.css ~/.config/gtk-4.0/gtk.css
+ln -sfn ../../.local/state/omarchy/current/theme/gtk.css ~/.config/gtk-3.0/gtk.css
+ln -sfn ../../.local/state/omarchy/current/theme/gtk.css ~/.config/gtk-4.0/gtk.css
 
 log "bootstrap complete."

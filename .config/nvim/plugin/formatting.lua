@@ -26,6 +26,9 @@ require("conform").setup({
         shfmt = {
             prepend_args = { "-i", "2" },
         },
+        jq = {
+            args = { "--indent", "2" },
+        },
         yamlfmt = {
             prepend_args = { "-formatter", "retain_line_breaks=true" },
         },

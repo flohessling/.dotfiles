@@ -120,10 +120,27 @@ omarchy-theme-set patina
 # Installed without --enable on purpose: the tracked ~/.config/omarchy/shell.json
 # already places the widget in bar.layout, so --enable risks a duplicate entry
 # depending on whether the dotfiles checkout happens before or after this runs.
+# `--yes` enforces that: it skips both the trust prompt and the "Enable now?"
+# prompt, leaving the plugin installed-but-not-enabled every time.
 # Note the https URL is rewritten to ssh by ~/.config/git/config, so this needs
 # the 1Password SSH agent to be up — first-run.sh already gates on that.
+#
+# `omarchy plugin add` is NOT idempotent: it exits 1 with "plugin id is already
+# installed" when the directory exists, which under `set -e` would abort the
+# whole bootstrap on re-run. Hence the guard — the plugin id, not the repo name,
+# is the directory name.
 log "installing omarchy shell plugins"
-omarchy plugin add https://github.com/robzolkos/omarchy-github.git
+install_plugin() {
+    local url=$1 id=$2
+    if [[ -e "$HOME/.config/omarchy/plugins/$id" ]]; then
+        log "plugin $id already installed, skipping"
+        return 0
+    fi
+    omarchy plugin add "$url" --yes
+}
+
+install_plugin https://github.com/robzolkos/omarchy-github.git robzolkos.github
+install_plugin https://github.com/flohessling/omarchy-stats.git flohessling.stats
 
 # ── wire gtk apps to active omarchy theme
 # Omarchy 4 (Quattro) moved theme state from ~/.config/omarchy/current to

@@ -9,7 +9,6 @@ dblab
 elephant-1password
 aws-session-manager-plugin
 lazysql
-librepods
 natscli
 opencode-bin
 phpstan-bin

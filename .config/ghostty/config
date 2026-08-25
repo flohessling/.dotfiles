@@ -24,7 +24,6 @@ shell-integration-features = ssh-env
 
 # Cursor
 cursor-style = block
-cursor-color = 81c784
 
 # Tab settings
 gtk-tabs-location = hidden
@@ -43,6 +42,7 @@ keybind = shift+enter=text:\x1b\r
 
 # Omarchy theme color
 config-file = ~/.local/state/omarchy/current/theme/ghostty.conf
+config-file = ~/.config/ghostty/cursor.conf
 
 # # Colors (no-clown-fiesta variant, aligned with nvim palette; OLED-darker bg)
 # foreground = E1E1E1

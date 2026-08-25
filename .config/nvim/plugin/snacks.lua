@@ -4,7 +4,7 @@ require("snacks").setup({
     bufdelete = { enabled = true },
     picker = {
         enabled = true,
-        layout = "telescope",
+        layout = "ivy",
         formatters = {
             file = {
                 truncate = 80,

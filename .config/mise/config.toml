@@ -2,3 +2,6 @@
 claude = "latest"
 node = "25.9.0"
 e1s = "latest"
+
+[settings.upgrade]
+auto_prune = false

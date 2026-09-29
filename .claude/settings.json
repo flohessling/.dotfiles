@@ -1,0 +1,159 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(//home/f/.ssh/**)",
+      "Read(//home/f/.gnupg/**)",
+      "Read(//home/f/.aws/credentials)",
+      "Read(//home/f/.claude/.credentials.json)",
+      "Read(//home/f/.config/gh/**)",
+      "Read(**/.env)",
+      "Read(**/.env.*)",
+      "Edit(//etc/**)",
+      "Edit(//usr/**)",
+      "Edit(//boot/**)",
+      "Edit(//home/f/.ssh/**)",
+      "Edit(//home/f/.gnupg/**)",
+      "Edit(//home/f/.aws/**)",
+      "Edit(//home/f/.claude/settings.json)",
+      "Bash(sudo *)",
+      "Bash(doas *)",
+      "Bash(su *)",
+      "Bash(rm -rf *)",
+      "Bash(rm -fr *)",
+      "Bash(rm -r /*)",
+      "Bash(dd *)",
+      "Bash(mkfs*)",
+      "Bash(fdisk *)",
+      "Bash(parted *)",
+      "Bash(shred *)",
+      "Bash(chown -R *)",
+      "Bash(chmod -R *)",
+      "Bash(git push --force*)",
+      "Bash(git push -f*)",
+      "Bash(git reset --hard*)",
+      "Bash(git clean -fd*)",
+      "Bash(git filter-branch*)",
+      "Bash(git filter-repo*)",
+      "Bash(history -c*)",
+      "Bash(secret-tool clear *)",
+      "Bash(gh auth token*)"
+    ],
+    "ask": [
+      "Bash(git push*)",
+      "Bash(git commit*)",
+      "Bash(git rebase*)",
+      "Bash(terraform apply*)",
+      "Bash(terraform destroy*)",
+      "Bash(terraform import*)",
+      "Bash(terraform state *)",
+      "Bash(aws *)",
+      "Bash(kubectl *)",
+      "Bash(systemctl *)",
+      "Bash(pacman *)",
+      "Bash(yay *)",
+      "Bash(paru *)",
+      "Bash(npm install*)",
+      "Bash(pip install*)",
+      "Bash(omarchy-*)",
+      "Bash(hyprctl *)",
+      "Bash(gh pr create*)",
+      "Bash(gh issue create*)",
+      "Bash(gh api *)"
+    ],
+    "defaultMode": "auto",
+    "disableBypassPermissionsMode": "disable"
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "{ printf '%s ' \"$(date -Is)\"; jq -r '.tool_input.command'; } >> ~/.claude/bash-audit.log",
+            "async": true
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash /home/f/.claude/statusline-command.sh"
+  },
+  "enabledPlugins": {
+    "lua-lsp@claude-plugins-official": true,
+    "datadog@claude-plugins-official": true
+  },
+  "sandbox": {
+    "enabled": true,
+    "autoAllowBashIfSandboxed": true,
+    "allowUnsandboxedCommands": true,
+    "network": {
+      "allowedDomains": [
+        "api.anthropic.com",
+        "*.anthropic.com",
+        "github.com",
+        "*.github.com",
+        "*.githubusercontent.com",
+        "registry.npmjs.org",
+        "pypi.org",
+        "files.pythonhosted.org",
+        "*.archlinux.org",
+        "*.amazonaws.com",
+        "*.datadoghq.eu",
+        "*.shopware.com",
+        "registry.terraform.io",
+        "*.releases.hashicorp.com"
+      ],
+      "strictAllowlist": false
+    },
+    "filesystem": {
+      "denyWrite": [
+        "~/.claude",
+        "~/.config/hypr",
+        "~/.config/omarchy",
+        "~/.local/share/mise"
+      ],
+      "denyRead": [
+        "~/.aws",
+        "~/.ssh",
+        "~/.gnupg",
+        "~/.config/gh",
+        "~/.claude/.credentials.json"
+      ]
+    },
+    "credentials": {
+      "files": [
+        {
+          "path": "~/.claude/.credentials.json",
+          "mode": "deny"
+        },
+        {
+          "path": "~/.ssh/id_ed25519",
+          "mode": "deny"
+        }
+      ]
+    }
+  },
+  "tui": "fullscreen",
+  "theme": "dark",
+  "fileCheckpointingEnabled": true,
+  "crossSessionInbound": "hold",
+  "outputStyle": "Ops",
+  "autoMode": {
+    "soft_deny": [
+      "$defaults",
+      "Writing outside the current project directory and /tmp — in particular ~/.config, ~/.local, and the bare dotfiles repo",
+      "Any command that mutates cloud or cluster state (terraform apply/destroy, aws mutating calls, kubectl apply/delete)",
+      "Installing, upgrading, or removing system or global packages",
+      "Starting, stopping, enabling, or disabling systemd units"
+    ],
+    "hard_deny": [
+      "$defaults",
+      "Piping a downloaded payload into an interpreter (curl|sh, wget|bash, iex, etc.)",
+      "Reading or printing the contents of ~/.ssh, ~/.gnupg, ~/.aws, ~/.config/gh, ~/.claude/.credentials.json, or any .env file",
+      "Sending file contents, credentials, or environment variables to any external service"
+    ]
+  }
+}

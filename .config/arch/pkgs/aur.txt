@@ -10,7 +10,7 @@ elephant-1password
 aws-session-manager-plugin
 lazysql
 natscli
-opencode-bin
+opencode-beta
 phpstan-bin
 postman-bin
 ratchet

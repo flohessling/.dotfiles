@@ -85,6 +85,7 @@
     "lua-lsp@claude-plugins-official": true,
     "datadog@claude-plugins-official": true
   },
+  "outputStyle": "Ops",
   "sandbox": {
     "enabled": true,
     "autoAllowBashIfSandboxed": true,
@@ -140,7 +141,6 @@
   "theme": "dark",
   "fileCheckpointingEnabled": true,
   "crossSessionInbound": "hold",
-  "outputStyle": "Ops",
   "autoMode": {
     "soft_deny": [
       "$defaults",
@@ -155,5 +155,6 @@
       "Reading or printing the contents of ~/.ssh, ~/.gnupg, ~/.aws, ~/.config/gh, ~/.claude/.credentials.json, or any .env file",
       "Sending file contents, credentials, or environment variables to any external service"
     ]
-  }
+  },
+  "switchModelsOnFlag": false
 }

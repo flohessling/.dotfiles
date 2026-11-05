@@ -4,19 +4,24 @@
 
 -- See https://wiki.hypr.land/Configuring/Basics/Variables/#input
 hl.config({
-  input = {
-    -- Lower pointer sensitivity (default: 0).
-    sensitivity = -0.3,
+	input = {
+		-- Lower pointer sensitivity (default: 0).
+		sensitivity = -0.3,
 
-    touchpad = {
-      -- Use natural (inverse) scrolling.
-      natural_scroll = true,
+		-- "German (US)": US keys, with right Alt as AltGr for ä/ö/ü/ß.
+		-- It's variant `us` of layout `de`; `us(de)` doesn't exist.
+		kb_layout = "de",
+		kb_variant = "us",
 
-      -- Quattro's default enables clickfinger; use bottom-corner right-click
-      -- instead, which is what the pre-Quattro config did by leaving it off.
-      clickfinger_behavior = false,
-    },
-  },
+		touchpad = {
+			-- Use natural (inverse) scrolling.
+			natural_scroll = true,
+
+			-- Quattro's default enables clickfinger; use bottom-corner right-click
+			-- instead, which is what the pre-Quattro config did by leaving it off.
+			clickfinger_behavior = false,
+		},
+	},
 })
 
 -- Per-app touchpad scroll speed.

@@ -8,7 +8,7 @@
 -- The fallback below only applies briefly before kanshi runs, or for any
 -- monitor not covered by a kanshi profile.
 
-hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1.5 })
+hl.monitor({ output = "", mode = "preferred", position = "auto", scale = 1 })
 
 -- Quattro's stock monitors.lua sets hl.env("GDK_SCALE", "2"), which renders GTK
 -- apps at 2x on this mixed-scale setup (eDP-1 1.5, DP-4 1.0, DP-6 1.5). kanshi
